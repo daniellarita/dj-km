@@ -10,11 +10,19 @@ const seedProducts = () => db.Promise.map([
   {artistName: 'Big Boi', description: 'Fat jams all day', price: '104.00',genre:'RAP',email:'bigboi@money.com'}
 ], product => db.model('products').create(product))
 
+
+const seedReviews = () => db.Promise.map([
+  {text: 'This movie brought me', rating: '5', product_id: '1'},
+  {text: 'and also good for!', rating: '1', product_id: '1'}], review => db.model('reviews').create(review))
+
+
 db.didSync
   .then(() => db.sync({force: true}))
   .then(seedUsers)
   .then(users => console.log(`Seeded ${users.length} users OK`))
   .then(seedProducts)
   .then(products => console.log(`Seeded ${products.length} products OK`))
+  .then(seedReviews)
+  .then(reviews => console.log(`Seeded ${reviews.length} reviews OK`))
   .catch(error => console.error(error))
   .finally(() => db.close())
