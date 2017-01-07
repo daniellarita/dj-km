@@ -1,6 +1,5 @@
 # Hi, I'm bones
 
-TEST
 I'm a happy little skeleton. You can clone me to use as a starter on your projects!
 I have React, Redux, Sequelize, and Express all just rattling around in here ready
 to go.
