@@ -9,19 +9,19 @@ const Product = require('./product');
 const Review = require('./review');
 const Order = require('./order');
 
-// Product and Review
+// Product <--> Review
 Product.hasMany(Review);
 Review.belongsTo(Product);
 
-// User and Review
+// User <--> Review
 User.hasMany(Review);
 Review.belongsTo(User);
 
-// User and Order
+// User <--> Order
 User.hasMany(Order);
 Order.belongsTo(User);
 
-// Product and Order
+// Product <--> Order
 Order.hasMany(Product);
 Product.belongsTo(Order);
 
