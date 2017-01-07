@@ -5,6 +5,7 @@ const seedUsers = () => db.Promise.map([
   {name: 'Barack Obama', email: 'barack@example.gov', password: '1234'},
 ], user => db.model('users').create(user))
 
+
 const seedProducts = () => db.Promise.map([
   {artistName: 'DJ GET MONEY$', description: 'A HOT DJ WITH MONEY', price: '100.00',genre:'FUNK',email:'email@money.com'},
   {artistName: 'Big Boi', description: 'Fat jams all day', price: '104.00',genre:'RAP',email:'bigboi@money.com'}
