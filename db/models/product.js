@@ -41,10 +41,10 @@ const Product = db.define('products', {
 },
 {
   getterMethods:{
-    getImage:function(){
-      return !this.image ? '/public/dj-default.png' : this.image;
+    getImage: function(){
+      !this.image ? this.image = '/public/dj-default.png' : null;
     }
   }
 })
 
-module.exports=Product;
+module.exports = Product;

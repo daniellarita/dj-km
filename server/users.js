@@ -3,9 +3,16 @@
 const epilogue = require('./epilogue')
 const db = require('APP/db')
 
-const customUserRoutes = require('express').Router() 
+const customUserRoutes = require('express').Router()
 
 // Custom routes go here.
+
+customUserRoutes.get('/', function (request, response, next) {
+  db.User.findAll({})
+  .then((result) => {
+    response.json(result);
+  });
+});
 
 module.exports = customUserRoutes
 

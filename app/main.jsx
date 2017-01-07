@@ -8,7 +8,8 @@ import store from './store'
 // import Jokes from './components/Jokes'
 import Login from './components/Login'
 import WhoAmI from './components/WhoAmI';
-import Test from './components/Test'
+import Products from './components/Products'
+
 
 const ExampleApp = connect(
   ({ auth }) => ({ user: auth })
@@ -25,11 +26,9 @@ const ExampleApp = connect(
 render (
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/jokes" component={Test}>
+      <Route path="/" component={Products}>
       </Route>
     </Router>
   </Provider>,
   document.getElementById('main')
 )
-
-
