@@ -16,25 +16,24 @@ class Products extends React.Component {
     });
   }
 
-  render() {
-    let michael="HEY";
-    console.log(this.state);
+  render() { 
 
-
-
-    return (
-      <div>
-        {
-          if(this.state.djArray.length!==0) {
-             michael = this.state.djArray.map((dj) => {
+    let djRender;           
+    if(this.state.djArray.length!==0) {
+         djRender =  this.state.djArray.map((dj,i) => {
                       return (
-                        <div>
+                        <div key={i}>
                           <h1>{dj.artistName}</h1>
-                          <img href={dj.image}></img>
+                          <img src={dj.image}></img>
                         </div>
                       )
                     })
                   }
+
+    return (
+      <div>
+        {
+          djRender
         }
       </div>
     )

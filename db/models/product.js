@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize')
-
 const db = require('APP/db')
+const {Review} = require('APP/db')
 
 const Product = db.define('products', {
   artistName: {
@@ -27,6 +27,12 @@ const Product = db.define('products', {
       notEmpty:true
     }
   },
+  location:{
+    type:Sequelize.ENUM('NYC', 'San Francisco', 'Chicago', 'Miami'),
+    validate: {
+      notEmpty:true
+    }
+  },
   email:{
     type:Sequelize.STRING,
     validate: {
@@ -36,15 +42,41 @@ const Product = db.define('products', {
   },
   audioSample:{
     type:Sequelize.STRING
+  },
+  rating: {
+    type:Sequelize.FLOAT
   }
 
 },
 {
   getterMethods:{
     getImage: function(){
-      !this.image ? this.image = '/public/dj-default.png' : null;
+      !this.image ? this.image = '/dj-default.png' : null;
     }
-  }
-})
+  },
+
+  instanceMethods:{
+    updateRating: function(){
+     return this.getReviews()
+      .then(data => 
+       {
+          let arr = data;
+          let sum = 0;
+
+          for(let i=0; i<arr.length; i++){
+            sum += parseInt(arr[i].rating)
+          }
+
+          this.rating = sum / arr.length;
+          console.log(this.rating)
+      })
+      .catch(console.log) 
+    }
+    }
+  
+
+}
+
+)
 
 module.exports = Product;
