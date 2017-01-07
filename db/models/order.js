@@ -1,6 +1,5 @@
 const Sequelize = require('sequelize')
 const db = require('APP/db')
-const { Order } = require('APP/db')
 
 const Order = db.define('orders', {
   orderNumber: {
@@ -19,7 +18,6 @@ const Order = db.define('orders', {
   instanceMethods: {
 
   }
-
 });
 
 module.exports = Order;

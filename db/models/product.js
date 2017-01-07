@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize')
 const db = require('APP/db')
-const {Review} = require('APP/db')
+const { Review } = require('APP/db')
 
 const Product = db.define('products', {
   artistName: {
