@@ -3,7 +3,7 @@ const db = require('APP/db')
 
 const Order = db.define('orders', {
   orderNumber: {
-    type: Sequelize.BIGINT,
+    type: Sequelize.STRING,
     validate: {
       notEmpty: true
     }

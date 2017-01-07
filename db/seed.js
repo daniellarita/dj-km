@@ -1,3 +1,5 @@
+const crypto = require('crypto');
+
 const db = require('APP/db')
 
 const seedUsers = () => db.Promise.map([
@@ -18,10 +20,9 @@ const seedReviews = () => db.Promise.map([
 ], review => db.model('reviews').create(review));
 
 
-const seedReviews = () => db.Promise.map([
-  {text: 'This movie brought me', rating: '5', product_id: '1'},
-  {text: 'and also good for!', rating: '1', product_id: '1'}
-], review => db.model('reviews').create(review));
+const seedOrders = () => db.Promise.map([
+  {orderNumber: crypto.randomBytes(10).toString('hex').toUpperCase()}
+], order => db.model('orders').create(order));
 
 db.didSync
   .then(() => db.sync({force: true}))
@@ -31,5 +32,7 @@ db.didSync
   .then(products => console.log(`Seeded ${products.length} products OK`))
   .then(seedReviews)
   .then(reviews => console.log(`Seeded ${reviews.length} reviews OK`))
+  .then(seedOrders)
+  .then(orders => console.log(`Seeded ${orders.length} reviews OK`))
   .catch(error => console.error(error))
   .finally(() => db.close())
