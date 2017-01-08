@@ -30,6 +30,11 @@ customReviewsRoutes.get('/:reviewId', function (request, response, next) {
 });
 
 // Reviews POST
+// Request.body must have
+// - text: text with minimum of 10 characters
+// - rating: number (which is a string)
+// - user_id: is an id (id is a string)
+// - product_id: is an id (id is a string)
 customReviewsRoutes.post('/', function (request, response, next) {
   Review.create({
     text: request.body.text,
