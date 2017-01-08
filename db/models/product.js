@@ -45,6 +45,9 @@ const Product = db.define('products', {
   },
   rating: {
     type:Sequelize.FLOAT
+  },
+  quantity:{
+    type:Sequelize.INTEGER
   }
 
 },
@@ -58,7 +61,7 @@ const Product = db.define('products', {
   instanceMethods:{
     updateRating: function(){
      return this.getReviews()
-      .then(data => 
+      .then(data =>
        {
           let arr = data;
           let sum = 0;
@@ -70,10 +73,10 @@ const Product = db.define('products', {
           this.rating = sum / arr.length;
           console.log(this.rating)
       })
-      .catch(console.log) 
+      .catch(console.log)
     }
     }
-  
+
 
 }
 

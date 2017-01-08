@@ -12,7 +12,7 @@ Product.hasMany(Review)
 User.hasMany(Review)
 
 Review.belongsTo(Product)
-// User.hasMany(Order)
+//User.hasMany(Order)
 // Order.hasMany(Product)
 // Product.belongsTo(Order)
 

@@ -8,7 +8,9 @@ import store from './store'
 // import Jokes from './components/Jokes'
 import Login from './components/Login'
 import WhoAmI from './components/WhoAmI';
-import Products from './components/Products'
+import Products from './components/Products';
+import NavBar from './components/NavBar';
+import App from './components/App';
 
 
 const ExampleApp = connect(
@@ -26,7 +28,7 @@ const ExampleApp = connect(
 render (
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/" component={Products}>
+      <Route path="/" component={App}>
       </Route>
     </Router>
   </Provider>,
