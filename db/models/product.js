@@ -7,18 +7,21 @@ const Product = db.define('products', {
     type:Sequelize.STRING,
     validate:{
       notEmpty:true
-    }
+    },
+    allowNull:false
   },
 
   description: {
-    type:Sequelize.STRING
+    type:Sequelize.STRING,
+    allowNull:false
   },
 
   price: {
     type:Sequelize.FLOAT,
     validate:{
       notEmpty:true
-    }
+    },
+    allowNull:false
   },
 
   image: {
@@ -29,14 +32,16 @@ const Product = db.define('products', {
     type:Sequelize.ENUM('ELECTRONIC', 'RAP', 'FUNK', 'HIP-HOP'),
     validate:{
       notEmpty:true
-    }
+    },
+    allowNull:false
   },
 
   location:{
     type:Sequelize.ENUM('NYC', 'San Francisco', 'Chicago', 'Miami'),
     validate: {
       notEmpty:true
-    }
+    },
+    allowNull:false
   },
 
   email:{
@@ -44,7 +49,8 @@ const Product = db.define('products', {
     validate: {
       isEmail: true,
       notEmpty: true
-    }
+    },
+    allowNull:false
   },
 
   audioSample:{
@@ -55,7 +61,8 @@ const Product = db.define('products', {
     type:Sequelize.FLOAT
   },
   quantity:{
-    type:Sequelize.INTEGER
+    type:Sequelize.INTEGER,
+    allowNull:false
   }
 },
 

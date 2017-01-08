@@ -11,7 +11,7 @@ customProductsRoutes.get('/', function (request, response, next) {
   Product.findAll({})
   .then((djArray) => {
 
-    let result; 
+    let result;
     result = djArray.map((dj) => {
        dj.giveImage;
 
@@ -22,6 +22,64 @@ customProductsRoutes.get('/', function (request, response, next) {
 
 });
 
+customProductsRoutes.get('/:productId', function(request,response,next){
+  Product.findOne({
+    where:{
+      id:request.params.productId
+    }
+  })
+  .then((product)=>{
+    response.json(product)
+  })
+  .catch(next);
+})
+
+customProductsRoutes.post('/', function(request,response,next){
+  const dj={
+    artistName:request.body.artistName,
+    description:request.body.description,
+    price:request.body.price,
+    image:request.body.image,
+    genre:request.body.genre,
+    location:request.body.location,
+    email:request.body.email,
+    audioSample:request.body.audioSample,
+    rating:request.body.rating,
+    quantity:request.body.quantity
+  }
+
+  Product.findOrCreate({
+    where:dj
+  })
+  .then(dj=>response.json(dj))
+  .catch(next);
+})
+
+customProductsRoutes.put('/:productId', function(request, response,next){
+  const req=request.body?request.body:{};
+  console.log(req)
+  Product.update(
+    req,
+    {where:{
+      id:parseInt(request.params.productId)
+    }
+  })
+  .then(res=>{
+    Product.findOne({ where:{id:request.params.productId}}).
+    then(res=>{
+      response.json(res)
+    })
+  })
+  .catch(next);
+})
+
+customProductsRoutes.delete('/:productId',function(request,response,next){
+  Product.destroy({
+    where:{id:request.params.productId}
+  })
+  .then(response.sendStatus(200))
+  .catch(next);
+})
 
 module.exports = customProductsRoutes
 
