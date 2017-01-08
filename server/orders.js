@@ -58,17 +58,4 @@ customOrderRoutes.delete('/', function (request, response, next) {
   .catch(next);
 });
 
-
 module.exports = customOrderRoutes;
-
-// Epilogue will automatically create standard RESTful routes
-// const orders = epilogue.resource({
-//   model: db.model('orders'),
-//   endpoints: ['/orders', '/orders/:id']
-// })
-
-// const {mustBeLoggedIn, selfOnly, forbidden} = epilogue.filters
-// users.delete.auth(mustBeLoggedIn)
-// users.delete.auth(selfOnly('delete'))
-// users.list.auth(forbidden('cannot list users'))
-// users.read.auth(mustBeLoggedIn)

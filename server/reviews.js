@@ -77,15 +77,3 @@ customReviewsRoutes.delete('/:reviewId', function (request, response, next) {
 
 
 module.exports = customReviewsRoutes;
-
-// Epilogue will automatically create standard RESTful routes
-// const products = epilogue.resource({
-//   model: db.model('products'),
-//   endpoints: ['/products', '/products/:id']
-// })
-
-// const {mustBeLoggedIn, selfOnly, forbidden} = epilogue.filters
-// users.delete.auth(mustBeLoggedIn)
-// users.delete.auth(selfOnly('delete'))
-// users.list.auth(forbidden('cannot list users'))
-// users.read.auth(mustBeLoggedIn)
