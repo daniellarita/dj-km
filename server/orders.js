@@ -13,7 +13,7 @@ customOrderRoutes.get('/', function (request, response, next) {
   .then((orderArray) => {
     // console.log(orderArray);
     // response.json(orderArray);
-    response.json("some string");
+    // response.json("some string");
   })
   .catch(console.log);
 });
