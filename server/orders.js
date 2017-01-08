@@ -17,6 +17,9 @@ customOrderRoutes.get('/', function (request, response, next) {
 });
 
 // Orders POST
+// Request.body must have
+ // - user_id: is an id (is is a string)
+ // - productIds: is an ARRAY of product ids (ids are strings)
 customOrderRoutes.post('/', function (request, response, next) {
   Order.create({
     user_id: request.body.user_id
