@@ -24,10 +24,10 @@ const Review = db.define('reviews', {
 {
   hooks: {
     afterCreate: function(review){
- 		return review.getProduct()
- 		.then((res) => res.updateRating())
- 		.catch(console.log)
-      }
+   		return review.getProduct()
+   		.then((res) => res.updateRating())
+   		.catch(console.log)
+        }
     }
 });
 

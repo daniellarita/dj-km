@@ -20,9 +20,16 @@ const seedReviews = () => db.Promise.map([
 ], review => db.model('reviews').create(review));
 
 
+const seedOrderProduct = () => db.Promise.map([
+  {order_id: 1, product_id: 1},
+  {order_id: 1, product_id: 2}
+], entry => db.model('orderproduct').create(entry));
+
+
 const seedOrders = () => db.Promise.map([
-  {orderNumber: crypto.randomBytes(10).toString('hex').toUpperCase()}
+  {orderNumber: crypto.randomBytes(5).toString('hex').toUpperCase()}
 ], order => db.model('orders').create(order));
+
 
 db.didSync
   .then(() => db.sync({force: true}))
@@ -33,6 +40,8 @@ db.didSync
   .then(seedReviews)
   .then(reviews => console.log(`Seeded ${reviews.length} reviews OK`))
   .then(seedOrders)
-  .then(orders => console.log(`Seeded ${orders.length} reviews OK`))
+  .then(orders => console.log(`Seeded ${orders.length} orders OK`))
+  .then(seedOrderProduct)
+  .then(entries => console.log(`Seeded ${entries.length} entries OK`))
   .catch(error => console.error(error))
   .finally(() => db.close())
