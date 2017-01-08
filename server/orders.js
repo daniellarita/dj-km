@@ -7,19 +7,13 @@ const customOrderRoutes = require('express').Router();
 
 // Custom routes go here.
 customOrderRoutes.get('/', function (request, response, next) {
-  console.log('hey')
   Order.findAll({
     include: [{model: Product}]
   })
   .then((orderArray) => {
-    console.log('hello');
     response.json(orderArray);
-    // response.json("some string");
   })
   .catch(next);
-
-
-
 });
 
 

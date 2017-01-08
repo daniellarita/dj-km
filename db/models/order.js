@@ -12,13 +12,7 @@ const Order = db.define('orders', {
 
 {
   getterMethods: {
-    // getListOfProducts: function() {
-    //   return this.getProducts()
-    //   .then((products) => {
-    //     console.log(products);
-    //   })
-    //   .catch(console.log);
-    // }
+
   },
 
   instanceMethods: {
