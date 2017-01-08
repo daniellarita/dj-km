@@ -16,6 +16,19 @@ customReviewsRoutes.get('/', function (request, response, next) {
   .catch(next);
 });
 
+customReviewsRoutes.get('/:reviewId', function (request, response, next) {
+  Review.findOne({
+    include: [Product, User],
+    where: {
+      id: request.params.reviewId
+    }
+  })
+  .then((review) => {
+    response.json(review);
+  })
+  .catch(next);
+});
+
 // Reviews POST
 customReviewsRoutes.post('/', function (request, response, next) {
   Review.create({
