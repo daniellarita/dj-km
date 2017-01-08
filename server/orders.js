@@ -40,18 +40,22 @@ customOrderRoutes.post('/', function (request, response, next) {
   .catch(next);
 });
 
+// Orders PUT
+// For MVP, we will not provide the ability to update an order after it is submitted
 
+// Orders DELETE
+// Request.body must have
+// - orderNumber: is a string
+customOrderRoutes.delete('/', function (request, response, next) {
+  Order.destroy({
+    where: {
+      orderNumber: request.body.orderNumber
+    }
+  })
+  .then((deleted) => {
+    response.sendStatus(200);
+  })
+  .catch(next);
+});
 
 module.exports = customOrderRoutes;
-
-// Epilogue will automatically create standard RESTful routes
-// const orders = epilogue.resource({
-//   model: db.model('orders'),
-//   endpoints: ['/orders', '/orders/:id']
-// })
-
-// const {mustBeLoggedIn, selfOnly, forbidden} = epilogue.filters
-// users.delete.auth(mustBeLoggedIn)
-// users.delete.auth(selfOnly('delete'))
-// users.list.auth(forbidden('cannot list users'))
-// users.read.auth(mustBeLoggedIn)
