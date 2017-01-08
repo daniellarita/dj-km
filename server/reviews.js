@@ -44,7 +44,6 @@ customReviewsRoutes.post('/', function (request, response, next) {
   })
   .then((review) => {
     response.sendStatus(200);
-    // response.json(review);
   })
   .catch(next);
 });
@@ -58,7 +57,6 @@ customReviewsRoutes.put('/:reviewId', function (request, response, next) {
   })
   .then((updatedReview) => {
     response.sendStatus(200);
-    // response.json(updatedReview);
   })
   .catch(next);
 });
@@ -72,7 +70,6 @@ customReviewsRoutes.delete('/:reviewId', function (request, response, next) {
   })
   .then((deleted) => {
     response.sendStatus(200);
-    // response.json(deleted);
   })
   .catch(next);
 });
