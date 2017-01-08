@@ -13,9 +13,11 @@ const Order = require('./order');
 Product.hasMany(Review);
 Review.belongsTo(Product);
 
+
 // User <--> Review
 // User.hasMany(Review);
 // Review.belongsTo(User);
+
 
 // User <--> Order
 // User.hasMany(Order);
