@@ -15,19 +15,19 @@ const seedProducts = () => db.Promise.map([
 
 
 const seedReviews = () => db.Promise.map([
-  {text: 'This movie brought me', rating: '5', product_id: '1'},
-  {text: 'and also good for!', rating: '1', product_id: '1'}
+  {text: 'This movie brought me', rating: '5', product_id: '1', user_id: '1'},
+  {text: 'and also good for!', rating: '1', product_id: '1', user_id: '1'}
 ], review => db.model('reviews').create(review));
 
 
 const seedOrderProduct = () => db.Promise.map([
-  {order_id: 1, product_id: 1},
-  {order_id: 1, product_id: 2}
+  {order_id: '1', product_id: '1'},
+  {order_id: '1', product_id: '2'}
 ], entry => db.model('orderproduct').create(entry));
 
 
 const seedOrders = () => db.Promise.map([
-  {orderNumber: crypto.randomBytes(5).toString('hex').toUpperCase()}
+  {orderNumber: crypto.randomBytes(5).toString('hex').toUpperCase(), user_id: '1'}
 ], order => db.model('orders').create(order));
 
 

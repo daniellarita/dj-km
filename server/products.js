@@ -7,19 +7,15 @@ const customProductsRoutes = require('express').Router();
 
 // Custom routes go here.
 customProductsRoutes.get('/', function (request, response, next) {
-
   Product.findAll({})
   .then((djArray) => {
-
     let result;
     result = djArray.map((dj) => {
        dj.giveImage;
-
     });
     response.json(djArray);
   })
   .catch(next);
-
 });
 
 customProductsRoutes.get('/:productId', function(request,response,next){

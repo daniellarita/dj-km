@@ -15,13 +15,13 @@ Review.belongsTo(Product);
 
 
 // User <--> Review
-// User.hasMany(Review);
-// Review.belongsTo(User);
+User.hasMany(Review);
+Review.belongsTo(User);
 
 
 // User <--> Order
-// User.hasMany(Order);
-// Order.belongsTo(User);
+User.hasMany(Order);
+Order.belongsTo(User);
 
 // Product <--> Order
 Order.belongsToMany(Product, {through: 'orderproduct'});

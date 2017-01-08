@@ -6,9 +6,10 @@ const Review = db.define('reviews', {
 
   text: {
     type: Sequelize.TEXT,
+    allowNull: false,
     validate: {
-      minimumLength: function() {
-      	if(this.length < 10) {
+      minimumLength: function(text) {
+      	if(text.length < 10) {
       		throw new Error("Review should be greater than 10 characters please")
       	}
       }
@@ -16,6 +17,7 @@ const Review = db.define('reviews', {
   },
   rating: {
   	type: Sequelize.ENUM('1','2','3','4','5'),
+    allowNull: false,
   	validate: {
   		notEmpty: true
   	}
