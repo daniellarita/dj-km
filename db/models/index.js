@@ -20,8 +20,8 @@ Review.belongsTo(User);
 
 
 // User <--> Order
-// User.hasMany(Order);
-// Order.belongsTo(User);
+User.hasMany(Order);
+Order.belongsTo(User);
 
 // Product <--> Order
 Order.belongsToMany(Product, {through: 'orderproduct'});

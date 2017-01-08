@@ -21,13 +21,13 @@ const seedReviews = () => db.Promise.map([
 
 
 const seedOrderProduct = () => db.Promise.map([
-  {order_id: 1, product_id: 1},
-  {order_id: 1, product_id: 2}
+  {order_id: '1', product_id: '1'},
+  {order_id: '1', product_id: '2'}
 ], entry => db.model('orderproduct').create(entry));
 
 
 const seedOrders = () => db.Promise.map([
-  {orderNumber: crypto.randomBytes(5).toString('hex').toUpperCase()}
+  {orderNumber: crypto.randomBytes(5).toString('hex').toUpperCase(), user_id: '1'}
 ], order => db.model('orders').create(order));
 
 

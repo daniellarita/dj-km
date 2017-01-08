@@ -2,19 +2,41 @@
 
 const epilogue = require('./epilogue');
 const db = require('APP/db');
-const { Order, Product } = require('APP/db/models');
+const { Order, Product, User } = require('APP/db/models');
 const customOrderRoutes = require('express').Router();
 
-// Custom routes go here.
+// Orders GET
 customOrderRoutes.get('/', function (request, response, next) {
   Order.findAll({
-    include: [{model: Product}]
+    include: [ Product, User ]
   })
   .then((orderArray) => {
     response.json(orderArray);
   })
   .catch(next);
 });
+
+// Orders POST
+customOrderRoutes.post('/', function (request, response, next) {
+  Order.create({
+    user_id: request.body.user_id
+  })
+  .then((order) => {
+    Product.findAll({
+      where: {
+        id: request.body.productIds
+      }
+    })
+    .then((productsArray) => {
+      return order.setProducts(productsArray);
+    })
+    .then((updatedOrder) => {
+      response.json(updatedOrder);
+    });
+  })
+  .catch(next);
+});
+
 
 
 module.exports = customOrderRoutes;
