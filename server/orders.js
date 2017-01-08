@@ -43,11 +43,11 @@ customOrderRoutes.post('/', function (request, response, next) {
 // Orders PUT
 // For MVP, we will not provide the ability to update an order after it is submitted
 
-//Orders DELETE
+// Orders DELETE
 // Request.body must have
 // - orderNumber: is a string
 customOrderRoutes.delete('/', function (request, response, next) {
-  Order.delete({
+  Order.destroy({
     where: {
       orderNumber: request.body.orderNumber
     }
