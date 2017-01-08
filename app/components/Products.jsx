@@ -24,7 +24,7 @@ class Products extends React.Component {
                       return (
                         <div key={i}>
                           <h1>{dj.artistName}</h1>
-                          <img src={dj.image}></img>
+                          <img src={dj.giveImage}></img>
                         </div>
                       )
                     })
