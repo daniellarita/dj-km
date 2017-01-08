@@ -61,8 +61,8 @@ const Product = db.define('products', {
 
 {
   getterMethods: {
-    getImage: function() {
-      !this.image ? this.image = '/dj-default.png' : null;
+    giveImage: function() {
+      return !this.image ? '/dj-default.png' : this.image;
     }
   },
 
