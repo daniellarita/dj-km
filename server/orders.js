@@ -23,8 +23,15 @@ customOrderRoutes.get('/', function (request, response, next) {
 // Orders POST
 // Request.body must have
 // - user_id: is an id (id is a string)
-// - productIds: is an ARRAY of product ids (ids are strings)
+// - products: array of objects. each object has pId, quantity, and price (all strings)
 customOrderRoutes.post('/', function (request, response, next) {
+
+  const products = request.body.products;
+  const productIds = [];
+  products.forEach((product) => {
+    productIds.push(product.pId);
+  });
+
   Order.create({})
   .then((order) => {
     return User.findOne({
@@ -37,15 +44,13 @@ customOrderRoutes.post('/', function (request, response, next) {
     });
   })
   .then((order) => {
-    // response.json(order);
     return Product.findAll({
       where: {
         id: request.body.productIds
       }
     })
     .then((productsArray) => {
-      response.json(productsArray);
-      order.setProducts(productsArray);
+      order.addProduct(productsArray[0]);
       return order;
     });
   })
