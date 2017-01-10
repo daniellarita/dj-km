@@ -19,7 +19,7 @@ const OrderProduct = db.define('order_products', {
   }
 }, {
   hooks: {
-    
+
   }
 });
 

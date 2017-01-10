@@ -20,7 +20,7 @@ const Order = db.define('orders', {
     }
   },
   grandTotal: {
-    type: Sequelize.STRING,
+    type: Sequelize.FLOAT,
     allowNull: false,
     validate: {
       notEmpty: true

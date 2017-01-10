@@ -46,37 +46,41 @@ customOrderRoutes.post('/', function (request, response, next) {
 
   Order.create({})
   .then((order) => {
-    return User.findOne({
-      where: {
-        id: request.body.user_id
-      }
-    })
-    .then((user) => {
-      return order.setUser(user);
-    });
+
+      return User.findOne({
+        where: {
+          id: request.body.user_id
+        }
+      })
+      .then((user) => {
+        return order.setUser(user);
+      });
+
   })
   .then((order) => {
-    return Product.findAll({
-      where: {
-        id: cartProductIds
-      }
-    })
-    .then((productsArray) => {
-      productsArray.forEach((prod) => {
-        cartProducts.forEach((cartPr) => {
-          if(prod.id.toString()===cartPr.pId.toString())
-          order.addProduct(prod, {
-            quantity: cartPr.quantity,
-            price: cartPr.price,
-            totalAmount: cartPr.quantity*cartPr.price
+
+      return Product.findAll({
+        where: {
+          id: cartProductIds
+        }
+      })
+      .then((productsArray) => {
+        productsArray.forEach((prod) => {
+          cartProducts.forEach((cartPr) => {
+            if(prod.id.toString()===cartPr.pId.toString())
+            order.addProduct(prod, {
+              quantity: cartPr.quantity,
+              price: cartPr.price,
+              totalAmount: cartPr.quantity*cartPr.price
+            });
           });
         });
+        return order;
       });
-      return order;
-    });
+
   })
   .then((order) => {
-    response.json(order);
+      response.json(order);
   })
   .catch(next);
 });
