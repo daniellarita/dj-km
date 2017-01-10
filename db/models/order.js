@@ -37,9 +37,7 @@ const Order = db.define('orders', {
   },
 
   instanceMethods: {
-    grandTotal: function(body) {
-      return this.grandTotal = gTotal;
-    }
+
   }
 });
 

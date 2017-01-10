@@ -22,9 +22,7 @@ const OrderProduct = db.define('order_products', {
 
   },
   instanceMethods: {
-    getTotalPerProd: function(row) {
-      return row.totalAmount;
-    }
+
   }
 });
 
