@@ -21,10 +21,7 @@ const Order = db.define('orders', {
   },
   grandTotal: {
     type: Sequelize.FLOAT,
-    allowNull: false,
-    validate: {
-      notEmpty: true
-    }
+    defaultValue: 0
   }
 },
 
@@ -40,7 +37,9 @@ const Order = db.define('orders', {
   },
 
   instanceMethods: {
-
+    grandTotal: function(body) {
+      return this.grandTotal = gTotal;
+    }
   }
 });
 

@@ -13,13 +13,18 @@ const OrderProduct = db.define('order_products', {
     defaultValue: 0
   },
   totalAmount: {
-    // this is just price * quantity per product
+    // this is price * quantity per product
     type: Sequelize.FLOAT,
     defaultValue: 0
   }
 }, {
   hooks: {
 
+  },
+  instanceMethods: {
+    getTotalPerProd: function(row) {
+      return row.totalAmount;
+    }
   }
 });
 

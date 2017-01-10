@@ -2,7 +2,7 @@
 
 const epilogue = require('./epilogue');
 const db = require('APP/db');
-const { Order, Product, User } = require('APP/db/models');
+const { OrderProduct, Order, Product, User } = require('APP/db/models');
 const customOrderRoutes = require('express').Router();
 
 // Orders GET
@@ -19,6 +19,8 @@ customOrderRoutes.get('/', function (request, response, next) {
 // Orders GET :orderNumber
 // Add Address, Total price
 
+// --------------------------------------------------------------------------
+
 // Orders POST
 // Request.body must have
 // - user_id: is an id (id is a string)
@@ -29,6 +31,7 @@ customOrderRoutes.get('/', function (request, response, next) {
 
 // Example Input:
 // {
+//   "deliveryAddress": "5 Hanover Square, New York, NY 10001",
 //   "products": [
 //     { "pId": "1", "quantity": "10", "price": "100" },
 //     { "pId": "2", "quantity": "20", "price": "200"}
@@ -36,6 +39,7 @@ customOrderRoutes.get('/', function (request, response, next) {
 //   "user_id": "2",
 //   "quantity": ["10", "20"]
 // }
+
 customOrderRoutes.post('/', function (request, response, next) {
 
   const cartProducts = request.body.products;
@@ -44,7 +48,10 @@ customOrderRoutes.post('/', function (request, response, next) {
     cartProductIds.push(product.pId);
   });
 
-  Order.create({})
+  Order.create({
+    deliveryAddress: request.body.deliveryAddress,
+    grandTotal: request.body
+  })
   .then((order) => {
 
       return User.findOne({
@@ -80,13 +87,28 @@ customOrderRoutes.post('/', function (request, response, next) {
 
   })
   .then((order) => {
+      OrderProduct.findAll({
+        // where: {
+        //   order_id: order.id
+        // }
+      })
+      .then((orderproductArray) => {
+        response.json(orderproductArray);
+      })
+      .then(() => {
+        order.grandTotal();
+      });
       response.json(order);
   })
   .catch(next);
 });
 
+// --------------------------------------------------------------------------
+
 // Orders PUT
 // For MVP, we will not provide the ability to update an order after it is submitted
+
+// --------------------------------------------------------------------------
 
 // Orders DELETE
 // Request.body must have
