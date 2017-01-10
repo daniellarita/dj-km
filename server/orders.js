@@ -25,10 +25,20 @@ customOrderRoutes.get('/', function (request, response, next) {
 // - user_id: is an id (id is a string)
 // - productIds: is an ARRAY of product ids (ids are strings)
 customOrderRoutes.post('/', function (request, response, next) {
-  Order.create({
-    user_id: request.body.user_id
+  Order.create({})
+  .then((order) => {
+    User.findOne({
+      where: {
+        id: request.body.user_id
+      }
+    })
+    .then((user) => {
+      order.setUser(user);
+      return order;
+    });
   })
   .then((order) => {
+    response.json(order);
     Product.findAll({
       where: {
         id: request.body.productIds
@@ -39,17 +49,16 @@ customOrderRoutes.post('/', function (request, response, next) {
       ;
     })
     .then(order => {
-      Orderproduct.update(
-        {
-          quantity: request.body.quantity
-        },
-
-        {
-          where: {
-          id: order.id
-          }
-        }
-      )
+      response.json(order);
+      // Orderproduct.update(
+      //   {
+      //     quantity: request.body.quantity
+      //   },
+      //   {
+      //     where: {
+      //     id: order.id
+      //     }
+      // })
     })
     .then((updatedOrder) => {
       response.sendStatus(200);
