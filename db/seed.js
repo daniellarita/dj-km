@@ -23,7 +23,7 @@ const seedReviews = () => db.Promise.map([
 const seedOrderProduct = () => db.Promise.map([
   {order_id: '1', product_id: '1'},
   {order_id: '1', product_id: '2'}
-], entry => db.model('orderproduct').create(entry));
+], entry => db.model('order_products').create(entry));
 
 
 const seedOrders = () => db.Promise.map([
