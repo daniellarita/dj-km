@@ -16,8 +16,11 @@ customOrderRoutes.get('/', function (request, response, next) {
   .catch(next);
 });
 
+// --------------------------------------------------------------------------
+
 // Orders GET :orderNumber
-// Add Address, Total price
+
+
 
 // --------------------------------------------------------------------------
 
