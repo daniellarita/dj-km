@@ -16,6 +16,10 @@ customOrderRoutes.get('/', function (request, response, next) {
   .catch(next);
 });
 
+// Orders GET :orderNumber
+// Add quantity, price per item, total price per product
+// Add Address, Total price
+
 // Orders POST
 // Request.body must have
 // - user_id: is an id (id is a string)
@@ -31,10 +35,25 @@ customOrderRoutes.post('/', function (request, response, next) {
       }
     })
     .then((productsArray) => {
-      return order.setProducts(productsArray);
+      return order.setProducts(productsArray)
+      ;
+    })
+    .then(order => {
+      Orderproduct.update(
+        {
+          quantity: request.body.quantity
+        },
+
+        {
+          where: {
+          id: order.id
+          }
+        }
+      )
     })
     .then((updatedOrder) => {
-      response.json(updatedOrder);
+      response.sendStatus(200);
+      // response.json(updatedOrder);
     });
   })
   .catch(next);
