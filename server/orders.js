@@ -47,6 +47,7 @@ customOrderRoutes.post('/', function (request, response, next) {
   cartProducts.forEach((product) => {
     cartProductIds.push(product.pId);
   });
+  let grandTotal = 0;
 
   Order.create({
     deliveryAddress: request.body.deliveryAddress,
@@ -74,12 +75,14 @@ customOrderRoutes.post('/', function (request, response, next) {
       .then((productsArray) => {
         productsArray.forEach((prod) => {
           cartProducts.forEach((cartPr) => {
-            if(prod.id.toString()===cartPr.pId.toString())
-            order.addProduct(prod, {
-              quantity: cartPr.quantity,
-              price: cartPr.price,
-              totalAmount: cartPr.quantity*cartPr.price
-            });
+            if(prod.id.toString()===cartPr.pId.toString()) {
+              grandTotal += cartPr.quantity*cartPr.price;
+              order.addProduct(prod, {
+                quantity: cartPr.quantity,
+                price: cartPr.price,
+                totalAmount: cartPr.quantity*cartPr.price
+              });
+            }
           });
         });
         return order;
@@ -87,18 +90,11 @@ customOrderRoutes.post('/', function (request, response, next) {
 
   })
   .then((order) => {
-      OrderProduct.findAll({
-        // where: {
-        //   order_id: order.id
-        // }
-      })
-      .then((orderproductArray) => {
-        response.json(orderproductArray);
-      })
-      .then(() => {
-        order.grandTotal();
-      });
-      response.json(order);
+      order.grandTotal = grandTotal;
+      return order.save();
+  })
+  .then((order) => {
+      response.sendStatus(200);
   })
   .catch(next);
 });
