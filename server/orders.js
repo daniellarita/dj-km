@@ -27,43 +27,30 @@ customOrderRoutes.get('/', function (request, response, next) {
 customOrderRoutes.post('/', function (request, response, next) {
   Order.create({})
   .then((order) => {
-    User.findOne({
+    return User.findOne({
       where: {
         id: request.body.user_id
       }
     })
     .then((user) => {
-      order.setUser(user);
-      return order;
+      return order.setUser(user);
     });
   })
   .then((order) => {
-    response.json(order);
-    Product.findAll({
+    // response.json(order);
+    return Product.findAll({
       where: {
         id: request.body.productIds
       }
     })
     .then((productsArray) => {
-      return order.setProducts(productsArray)
-      ;
-    })
-    .then(order => {
-      response.json(order);
-      // Orderproduct.update(
-      //   {
-      //     quantity: request.body.quantity
-      //   },
-      //   {
-      //     where: {
-      //     id: order.id
-      //     }
-      // })
-    })
-    .then((updatedOrder) => {
-      response.sendStatus(200);
-      // response.json(updatedOrder);
+      response.json(productsArray);
+      order.setProducts(productsArray);
+      return order;
     });
+  })
+  .then((order) => {
+    response.json(order);
   })
   .catch(next);
 });
