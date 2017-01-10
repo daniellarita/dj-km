@@ -23,13 +23,26 @@ customOrderRoutes.get('/', function (request, response, next) {
 // Orders POST
 // Request.body must have
 // - user_id: is an id (id is a string)
-// - products: array of objects. each object has pId, quantity, and price (all strings)
+// - products: array of objects. Each object has
+      // - pId (strings)
+      // - quantity (strings)
+      // - price (strings)
+
+// Example Input:
+// {
+//   "products": [
+//     { "pId": "1", "quantity": "10", "price": "100" },
+//     { "pId": "2", "quantity": "20", "price": "200"}
+//     ],
+//   "user_id": "2",
+//   "quantity": ["10", "20"]
+// }
 customOrderRoutes.post('/', function (request, response, next) {
 
-  const products = request.body.products;
-  const productIds = [];
-  products.forEach((product) => {
-    productIds.push(product.pId);
+  const cartProducts = request.body.products;
+  const cartProductIds = [];
+  cartProducts.forEach((product) => {
+    cartProductIds.push(product.pId);
   });
 
   Order.create({})
@@ -46,11 +59,16 @@ customOrderRoutes.post('/', function (request, response, next) {
   .then((order) => {
     return Product.findAll({
       where: {
-        id: request.body.productIds
+        id: cartProductIds
       }
     })
     .then((productsArray) => {
-      order.addProduct(productsArray[0]);
+      productsArray.forEach((prod) => {
+        cartProducts.forEach((cartPr) => {
+          if(prod.id.toString()===cartPr.pId.toString())
+          order.addProduct(prod, { quantity: cartPr.quantity, price: cartPr.price });
+        });
+      });
       return order;
     });
   })
