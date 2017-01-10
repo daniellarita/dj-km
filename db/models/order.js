@@ -11,6 +11,20 @@ const Order = db.define('orders', {
     validate: {
       notEmpty: true
     }
+  },
+  deliveryAddress: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
+  },
+  grandTotal: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
   }
 },
 

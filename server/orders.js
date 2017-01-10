@@ -17,7 +17,6 @@ customOrderRoutes.get('/', function (request, response, next) {
 });
 
 // Orders GET :orderNumber
-// Add quantity, price per item, total price per product
 // Add Address, Total price
 
 // Orders POST
