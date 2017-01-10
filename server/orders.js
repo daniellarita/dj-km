@@ -66,7 +66,11 @@ customOrderRoutes.post('/', function (request, response, next) {
       productsArray.forEach((prod) => {
         cartProducts.forEach((cartPr) => {
           if(prod.id.toString()===cartPr.pId.toString())
-          order.addProduct(prod, { quantity: cartPr.quantity, price: cartPr.price });
+          order.addProduct(prod, {
+            quantity: cartPr.quantity,
+            price: cartPr.price,
+            totalAmount: cartPr.quantity*cartPr.price
+          });
         });
       });
       return order;

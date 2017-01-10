@@ -19,9 +19,7 @@ const OrderProduct = db.define('order_products', {
   }
 }, {
   hooks: {
-    beforeValidate: function() {
-      return this.totalAmount = this.price * this.quantity;
-    }
+    
   }
 });
 
