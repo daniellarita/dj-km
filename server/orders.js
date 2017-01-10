@@ -34,7 +34,7 @@ customOrderRoutes.get('/', function (request, response, next) {
 //   "deliveryAddress": "5 Hanover Square, New York, NY 10001",
 //   "products": [
 //     { "pId": "1", "quantity": "10", "price": "100" },
-//     { "pId": "2", "quantity": "20", "price": "200"}
+//     { "pId": "2", "quantity": "20", "price": "200" }
 //     ],
 //   "user_id": "2",
 //   "quantity": ["10", "20"]
