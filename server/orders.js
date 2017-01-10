@@ -50,8 +50,7 @@ customOrderRoutes.post('/', function (request, response, next) {
   let grandTotal = 0;
 
   Order.create({
-    deliveryAddress: request.body.deliveryAddress,
-    grandTotal: request.body
+    deliveryAddress: request.body.deliveryAddress
   })
   .then((order) => {
 
