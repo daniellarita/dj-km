@@ -29,7 +29,7 @@ customOrderRoutes.get('/', function (request, response, next) {
       // - quantity (strings)
       // - price (strings)
 
-// Example Input:
+// Example Input Object (i.e., request.body):
 // {
 //   "deliveryAddress": "5 Hanover Square, New York, NY 10001",
 //   "products": [
@@ -109,6 +109,11 @@ customOrderRoutes.post('/', function (request, response, next) {
 // Orders DELETE
 // Request.body must have
 // - orderNumber: is a string
+
+// Example Input Object (i.e., request.body):
+// {
+//   "orderNumber": "2F29EEF8D4"
+// }
 customOrderRoutes.delete('/', function (request, response, next) {
   Order.destroy({
     where: {
