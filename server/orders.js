@@ -19,7 +19,70 @@ customOrderRoutes.get('/', function (request, response, next) {
 // --------------------------------------------------------------------------
 
 // Orders GET :orderNumber
+customOrderRoutes.get('/:orderNumber', function (request, response, next) {
+  Order.findOne({
+    include: [ Product, User ],
+    where: {
+      orderNumber: request.params.orderNumber
+    }
+  })
+  .then((order) => {
+    response.json(order);
+  })
+  .catch(next);
+});
 
+// --------------------------------------------------------------------------
+
+// Orders GET :orderNumber/user
+customOrderRoutes.get('/:orderNumber/user', function (request, response, next) {
+  Order.findOne({
+    include: [ Product, User ],
+    where: {
+      orderNumber: request.params.orderNumber
+    }
+  })
+  .then((order) => {
+    response.json(order.user);
+  })
+  .catch(next);
+});
+
+// --------------------------------------------------------------------------
+
+// Orders GET :orderNumber/products
+customOrderRoutes.get('/:orderNumber/products', function (request, response, next) {
+
+  const products = [];
+
+  Order.findOne({
+    include: [ Product, User ],
+    where: {
+      orderNumber: request.params.orderNumber
+    }
+  })
+  .then((order) => {
+    order.products.map((prod, index) => {
+      return products[index] = {
+        artistName: prod.artistName,
+        description: prod.description,
+        price: prod.order_products.price,
+        quantity: prod.order_products.quantity,
+        totalAmount: prod.order_products.totalAmount,
+        id: prod.id,
+        image: prod.image,
+        genre: prod.genre,
+        location: prod.location,
+        email: prod.email,
+        audioSample: prod.audioSample,
+        rating: prod.rating
+      }
+    });
+
+    response.json(products);
+  })
+  .catch(next);
+});
 
 
 // --------------------------------------------------------------------------
