@@ -5,6 +5,8 @@ const db = require('APP/db');
 const { OrderProduct, Order, Product, User } = require('APP/db/models');
 const customOrderRoutes = require('express').Router();
 
+// --------------------------------------------------------------------------
+
 // Orders GET
 customOrderRoutes.get('/', function (request, response, next) {
   Order.findAll({
