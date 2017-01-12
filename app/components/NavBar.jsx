@@ -1,6 +1,9 @@
 import React from 'react';
+import Login from './Login';
+
 
 const NavBar = (props) =>{
+  console.log("NAV PROPS",props)
   return(
     <div>
       <nav className="navbar navbar-default">
@@ -16,11 +19,18 @@ const NavBar = (props) =>{
           </div>
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul className="nav navbar-nav navbar-right">
-              <li><a href="#">Create Account</a></li>
-              <li><a href="#">View Cart</a></li>
-              <li><a href="#">Sign in</a></li>
-            </ul>
 
+              { props.user && props.user.email ?
+                <div>
+                  <li><a href="#">{props.user.name}</a></li>
+                  <li><a onClick={props.handleLogout} href="#">Sign Out</a></li>
+                </div>
+                :
+                <Login />
+              }
+
+              <li><a href="#">View Cart</a></li>
+            </ul>
           </div>
         </div>
       </nav>
