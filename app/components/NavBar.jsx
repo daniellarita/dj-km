@@ -1,5 +1,6 @@
 import React from 'react';
 import Login from './Login';
+import { Link } from 'react-router';
 
 
 const NavBar = (props) =>{
@@ -15,21 +16,25 @@ const NavBar = (props) =>{
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
             </button>
-            <a className="navbar-brand" href="#">DJ KM</a>
+            <Link className="navbar-brand" to="/">
+              DJKM
+            </Link>
           </div>
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul className="nav navbar-nav navbar-right">
 
               { props.user && props.user.email ?
                 <div>
-                  <li><a href="#">{props.user.name}</a></li>
+                  <li><a href="#">{props.user.name}'s Account</a></li>
+                  <li><a href="#">View Cart</a></li>
                   <li><a onClick={props.handleLogout} href="#">Sign Out</a></li>
                 </div>
                 :
-                <Login />
+                <div>
+                  <Login />
+                  <li><a href="#">View Cart</a></li>
+                </div>
               }
-
-              <li><a href="#">View Cart</a></li>
             </ul>
           </div>
         </div>
