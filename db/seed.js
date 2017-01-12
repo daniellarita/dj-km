@@ -27,7 +27,10 @@ const seedOrderProduct = () => db.Promise.map([
 
 
 const seedOrders = () => db.Promise.map([
-  {orderNumber: crypto.randomBytes(5).toString('hex').toUpperCase(), user_id: '1'}
+  {orderNumber: crypto.randomBytes(5).toString('hex').toUpperCase(),
+  user_id: '1',
+  deliveryAddress: "Times Square"
+}
 ], order => db.model('orders').create(order));
 
 
