@@ -8,8 +8,6 @@ import store from './store'
 // import Jokes from './components/Jokes'
 import Login from './components/Login'
 import WhoAmI from './components/WhoAmI';
-import Products from './components/Products';
-import NavBar from './components/NavBar';
 import App from './components/App';
 
 

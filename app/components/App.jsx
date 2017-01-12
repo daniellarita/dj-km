@@ -1,13 +1,12 @@
 import React from 'react'
 import Products from './Products';
-import NavBar from './NavBar';
+import NavBarContainer from '../containers/NavBarContainer';
 import Login from './Login';
 
 const App = (props)=>{
   return(
     <div>
-      <NavBar />
-      <Login />
+      <NavBarContainer />
       <Products />
     </div>
   );
