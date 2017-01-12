@@ -1,12 +1,13 @@
 import React from 'react'
 import Products from './Products';
 import NavBarContainer from '../containers/NavBarContainer';
-import Login from './Login';
+import SearchFilter from './SearchFilter';
 
 const App = (props)=>{
   return(
     <div>
       <NavBarContainer />
+      <SearchFilter />
       <Products />
     </div>
   );
