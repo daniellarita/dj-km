@@ -4,7 +4,6 @@ import { Link } from 'react-router';
 
 
 const NavBar = (props) =>{
-  console.log("NAV PROPS",props)
   return(
     <div>
       <nav className="navbar navbar-default">

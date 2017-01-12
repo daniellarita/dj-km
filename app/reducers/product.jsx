@@ -1,17 +1,22 @@
-import axios from 'axios'
+const SELECT_PRODUCT = 'SELECT_PRODUCT';
 
 const reducer = (state=null, action) => {
   switch(action.type) {
-  case AUTHENTICATED:
-    return action.user
+  case SELECT_PRODUCT:
+    return action.product;
   }
-  return state
+  return state;
 }
 
-const AUTHENTICATED = 'AUTHENTICATED'
-export const authenticated = user => ({
-  type: AUTHENTICATED, user
+export const selectProduct = product => ({
+  type: SELECT_PRODUCT, product
 })
+
+export const getProduct = ( productId ) =>
+  dispatch =>
+    axios.get('/api/products/:productId', {productId})
+    .then((response) => console.log(response.data))
+
 
 export const login = (username, password) =>
   dispatch =>

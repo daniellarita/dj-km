@@ -10,15 +10,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  // return {
-  //   handleSubmit (playlistId, songId) {
-  //     return dispatch(addSongToPlaylist(playlistId, songId));
-  //   }
-  // };
   return {
-    // handleLogin (username, password){
-    //   return dispatch(login(username,password));
-    // }
     handleLogout () {
       return dispatch(logout());
     }
