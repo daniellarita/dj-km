@@ -43,7 +43,6 @@ const seedProducts = () => db.Promise.map(fakeProducts, product => db.model('pro
 //   {artistName: 'Big Boi', description: 'Fat jams all day', price: '104.00',genre:'RAP',email:'bigboi@money.com', location:'NYC', quantity:1}
 // ], product => db.model('products').create(product));
 
-
 const seedReviews = () => db.Promise.map([
   {text: 'This movie brought me', rating: '5', product_id: '1', user_id: '1'},
   {text: 'and also good for!', rating: '1', product_id: '1', user_id: '1'}
