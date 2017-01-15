@@ -14,34 +14,49 @@ class ProductsHome extends React.Component {
       <div>
         <h1>Welcome to DJKM!</h1>
         <div className="well well-sm">
-          <strong>Category Title</strong>
-          <div className="btn-group">
-            <a href="#" id="list" className="btn btn-default btn-sm"><span className="glyphicon glyphicon-th-list">
-            </span>List</a> <a href="#" id="grid" className="btn btn-default btn-sm"><span className="glyphicon glyphicon-th"></span>Grid</a>
-          </div>
+          <strong>Hire a DJ</strong>
         </div>
+        <div id="products" class="row list-group">
         {
           prod.products && prod.products.length>0 && prod.products.map((curr, i) => {
             return(
-              <div>
-
               <div key={i}>
-                <h4>
-                  <Link
-                    onClick={()=>this.props.selectProduct(curr)}
-                    to={`/products/${curr.id}`}
-                  >
-                  {curr.artistName}
-                  </Link>
 
+                <div className="item col-xs-4 col-lg-4">
+                    <Link
+                      onClick={()=>this.props.selectProduct(curr)}
+                      to={`/products/${curr.id}`}
+                      >
+                      <h4>{curr.artistName}</h4>
+                    </Link>
+                            <div className="thumbnail">
+                              <Link
+                                onClick={()=>this.props.selectProduct(curr)}
+                                to={`/products/${curr.id}`}
+                                >
+                                <img className="group list-group-image" src={curr.image} alt="" />
+                              </Link>
+                                <div className="caption">
+                                    <h4 className="group inner list-group-item-heading">{curr.artistName}</h4>
+                                      <p className="group inner list-group-item-text">{curr.description}</p>
+                                      <div className="row">
+                                        <div className="col-xs-12 col-md-6">
+                                            <p className="lead">$ {curr.price}</p>
+                                        </div>
+                                        <div className="col-xs-12 col-md-6">
+                                            <a className="btn btn-success" href="">Add to cart</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-
-                </h4>
-              </div>
               </div>
             )
           })
         }
+      </div>
+
       </div>
     );
   }
