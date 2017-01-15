@@ -10,8 +10,10 @@ const App = (props)=>{
     <div>
       <NavBarContainer />
       <SearchFilter />
-      <ProductsHomeContainer />
       <Link to="/product">Click here for demo product detail page</Link>
+        {
+            props.children && React.cloneElement(props.children, props)
+        }
     </div>
   );
 }

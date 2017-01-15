@@ -10,7 +10,6 @@ const initialProductsState = {
 
 export default function reducer(state=initialProductsState, action) {
   const newState = Object.assign({}, state);
-  console.log(action, "in reducer")
   switch(action.type) {
 
     case GET_PRODUCTS:
@@ -32,7 +31,7 @@ export const setProductsOnBrowser = (products) => ({
 
 export const selectProduct = (product) => ({
   type: SELECT_PRODUCT,
-  selected:product
+  selected: product
 });
 
 export function getProducts() {
@@ -51,17 +50,3 @@ export function setSelected(prod) {
     dispatch(selectProduct(prod));
   };
 };
-
-// export const setLyrics = text => ({
-//   type: SET_LYRICS,
-//   text
-// });
-
-// export const searchLyrics = (artist, song) => {
-//   return dispatch => {
-//     return axios.get(`/api/lyrics/${artist}/${song}`)
-//       .then(res => {
-//         dispatch(setLyrics(res.data.lyric));
-//       });
-//   };
-// };

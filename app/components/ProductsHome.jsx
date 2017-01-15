@@ -8,12 +8,11 @@ class ProductsHome extends React.Component {
   }
 
   render() {
-    console.log(this.props, "product props");
     let prod = this.props.products;
 
     return(
       <div>
-        <h1>HEY THERE PRODUCTS HOME</h1>
+        <h1>Welcome to DJKM!</h1>
         {
           prod.products && prod.products.length!==0 && prod.products.map((curr, i) => {
             return(
