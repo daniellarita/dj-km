@@ -14,7 +14,7 @@ for(let i=0; i<20; i++) {
   fakeProducts[i] = {
     artistName: faker.name.findName(),
     description: faker.commerce.productName(),
-    price: faker.commerce.price,
+    price: faker.commerce.price(),
     genre: i%2===0 ? 'FUNK': 'RAP',
     email: faker.internet.email(),
     location: 'NYC',
