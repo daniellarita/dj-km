@@ -24,11 +24,6 @@ export const setProductsOnBrowser = (products) => ({
   products
 });
 
-// export function setProductsOnBrowser(products) {
-//   type: GET_PRODUCTS,
-//   products
-// };
-
 export function getProducts() {
   return (dispatch) => {
     return axios.get(`/api/products`)

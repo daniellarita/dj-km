@@ -18,7 +18,7 @@ class ProductsHome extends React.Component {
           prod.products && prod.products.length!==0 && prod.products.map((curr, i) => {
             return(
               <div key={i}>
-                <h3><Link to="">{curr.artistName}</Link></h3>
+                <h3><Link to={`/products/${curr.id}`}>{curr.artistName}</Link></h3>
               </div>
             )
           })
