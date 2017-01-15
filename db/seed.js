@@ -1,4 +1,5 @@
 const crypto = require('crypto');
+const faker = require('faker');
 
 const db = require('APP/db')
 
@@ -7,12 +8,40 @@ const seedUsers = () => db.Promise.map([
  {name: 'Barack Obama', admin: true, email: 'barack@example.gov', password: '1234'},
 ], user => db.model('users').create(user));
 
+const fakeProducts = [];
+// NYC
+for(let i=0; i<20; i++) {
+  fakeProducts[i] = {
+    artistName: faker.name.findName(),
+    description: faker.commerce.productName(),
+    price: faker.commerce.price,
+    genre: i%2===0 ? 'FUNK': 'RAP',
+    email: faker.internet.email(),
+    location: 'NYC',
+    image: faker.image.people(),
+    quantity: faker.random.number()%100
+  }
+}
 
-const seedProducts = () => db.Promise.map([
-  {artistName: 'DJ GET MONEY$', description: 'A HOT DJ WITH MONEY', price: '100.00',genre:'FUNK',email:'email@money.com', location:'NYC', quantity:1},
-  {artistName: 'Big Boi', description: 'Fat jams all day', price: '104.00',genre:'RAP',email:'bigboi@money.com', location:'NYC', quantity:10}
-], product => db.model('products').create(product));
+// SF
+for(let i=20; i<40; i++) {
+  fakeProducts[i] = {
+    artistName: faker.name.findName(),
+    description: faker.commerce.productName(),
+    price: faker.commerce.price(),
+    genre: i%2===0 ? 'FUNK': 'RAP',
+    email: faker.internet.email(),
+    location: 'San Francisco',
+    image: faker.image.people(),
+    quantity: faker.random.number()%100
+  }
+}
 
+const seedProducts = () => db.Promise.map(fakeProducts, product => db.model('products').create(product));
+// const seedProducts = () => db.Promise.map([
+//   {artistName: 'DJ GET MONEY$', description: 'A HOT DJ WITH MONEY', price: '100.00',genre:'FUNK',email:'email@money.com', location:'NYC', quantity:1},
+//   {artistName: 'Big Boi', description: 'Fat jams all day', price: '104.00',genre:'RAP',email:'bigboi@money.com', location:'NYC', quantity:1}
+// ], product => db.model('products').create(product));
 
 const seedReviews = () => db.Promise.map([
   {text: 'This movie brought me', rating: '5', product_id: '1', user_id: '1'},
