@@ -10,7 +10,6 @@ const initialProductsState = {
 
 export default function reducer(state=initialProductsState, action) {
   const newState = Object.assign({}, state);
-  console.log(action, "in reducer")
   switch(action.type) {
 
     case GET_PRODUCTS:
@@ -46,7 +45,6 @@ export function getProducts() {
 };
 
 export function setSelected(prod) {
-  console.log("clicked button", prod)
   return (dispatch) => {
     dispatch(selectProduct(prod));
   };

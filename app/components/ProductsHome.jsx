@@ -8,8 +8,9 @@ class ProductsHome extends React.Component {
   }
 
   render() {
-    console.log(this.props, "product props");
     let prod = this.props.products;
+    console.log(this.props.products.selected)
+
 
     return(
       <div>
