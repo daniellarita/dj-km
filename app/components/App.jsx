@@ -5,6 +5,7 @@ import SearchFilter from './SearchFilter';
 import { Link } from 'react-router';
 
 const App = (props)=>{
+  console.log("props in app",props)
   return(
     <div>
       <NavBarContainer />

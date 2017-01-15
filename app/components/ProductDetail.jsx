@@ -1,13 +1,73 @@
 import React from 'react';
 import NavBarContainer from '../containers/NavBarContainer';
+import axios from 'axios';
 
-const ProductDetail = (props) =>{
-  console.log("props in product detail!!", props)
-  return(
-    <div>
-      <NavBarContainer />
-      <p>Sample Product Detail Page</p>
-    </div>
-  )
+class ProductDetail extends React.Component{
+  constructor(props){
+    super(props);
+    this.state={
+      selectedProduct: {}
+    }
+  }
+
+  componentDidMount(){
+    axios.get('/api/products/2')
+      .then((result) => {
+        this.setState({
+          selectedProduct:result.data
+        })
+        console.log(this.state);
+      })
+  }
+
+  getQuantityArray(){
+    let q=this.state.selectedProduct.quantity;
+    var qArray=[];
+    for (let i=1;i<=q;i++){
+      qArray.push(i)
+    }
+    return qArray;
+  }
+
+  render(){
+    let quantity=this.getQuantityArray();
+
+    let quantityRender;
+    if(quantity.length!==0) {
+         quantityRender =  quantity.map((q,i) => {
+                      return (
+                        <option key={i}>
+                          {q}
+                        </option>
+                      )
+                    })
+                  }
+
+    return(
+      <div>
+        <NavBarContainer />
+        <div className="col-md-8">
+          <h1>{this.state.selectedProduct.artistName}</h1>
+          <p>{this.state.selectedProduct.description}</p>
+          <img src={this.state.selectedProduct.giveImage}></img>
+          <div>Audio Sample Placeholder</div>
+        </div>
+        <div className="col-md-4">
+          <h4>Price</h4>
+          <p>{`$${this.state.selectedProduct.price}`}</p>
+          <h4>Genre</h4>
+          <p>{this.state.selectedProduct.genre}</p>
+          <h4>Location</h4>
+          <p>{this.state.selectedProduct.location}</p>
+          <h4>Quantity</h4>
+          <select>
+            { quantityRender }
+          </select>
+          <button className="btn-primary">Add to Cart</button>
+        </div>
+      </div>
+    )
+  }
 }
+
 export default ProductDetail;
