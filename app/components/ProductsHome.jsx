@@ -9,12 +9,17 @@ class ProductsHome extends React.Component {
 
   render() {
     let prod = this.props.products;
-    console.log(this.props.products.selected)
-
 
     return(
       <div>
         <h1>Welcome to DJKM!</h1>
+        <div className="well well-sm">
+          <strong>Category Title</strong>
+          <div className="btn-group">
+            <a href="#" id="list" className="btn btn-default btn-sm"><span className="glyphicon glyphicon-th-list">
+            </span>List</a> <a href="#" id="grid" className="btn btn-default btn-sm"><span className="glyphicon glyphicon-th"></span>Grid</a>
+          </div>
+        </div>
         {
           prod.products && prod.products.length>0 && prod.products.map((curr, i) => {
             return(
