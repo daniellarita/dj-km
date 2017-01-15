@@ -14,10 +14,17 @@ class ProductsHome extends React.Component {
       <div>
         <h1>Welcome to DJKM!</h1>
         {
-          prod.products && prod.products.length!==0 && prod.products.map((curr, i) => {
+          prod.products && prod.products.length>0 && prod.products.map((curr, i) => {
             return(
               <div key={i}>
-                <h3><Link onClick={()=>this.props.selectProduct(curr)} to={`/products/${curr.id}`}>{curr.artistName}</Link></h3>
+                <h4>
+                  <Link
+                    onClick={()=>this.props.selectProduct(curr)}
+                    to={`/products/${curr.id}`}
+                  >
+                  {curr.artistName}
+                  </Link>
+                </h4>
               </div>
             )
           })
