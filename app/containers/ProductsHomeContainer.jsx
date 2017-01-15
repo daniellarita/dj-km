@@ -1,11 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getProducts } from '../reducers/productsHome.jsx';
+import { getProducts, setSelected } from '../reducers/productsHome.jsx';
 import ProductsHome from '../components/ProductsHome.jsx';
 
 function mapStateToProps (state) {
+  console.log(state)
   return {
-    products: state.products
+    products: state.products,
+    product: state.selected
   };
 };
 
@@ -13,6 +15,10 @@ function mapDispatchToProps (dispatch) {
   return {
     receiveProducts () {
       dispatch(getProducts());
+    },
+    selectProduct (prod) {
+      console.log(prod, "inside select product")
+      dispatch(setSelected(prod));
     }
   };
 };
