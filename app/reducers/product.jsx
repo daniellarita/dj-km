@@ -12,10 +12,12 @@ export const selectProduct = product => ({
   type: SELECT_PRODUCT, product
 })
 
-export const getProduct = ( productId ) =>
+export const getProduct = ( ) =>
   dispatch =>
-    axios.get('/api/products/:productId', {productId})
-    .then((response) => console.log(response.data))
+    axios.get('/api/products/:productId')
+    .then((response) => {
+      console.log("response in get product",response);
+    })
 
 
 export const login = (username, password) =>

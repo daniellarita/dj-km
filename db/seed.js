@@ -10,7 +10,7 @@ const seedUsers = () => db.Promise.map([
 
 const seedProducts = () => db.Promise.map([
   {artistName: 'DJ GET MONEY$', description: 'A HOT DJ WITH MONEY', price: '100.00',genre:'FUNK',email:'email@money.com', location:'NYC', quantity:1},
-  {artistName: 'Big Boi', description: 'Fat jams all day', price: '104.00',genre:'RAP',email:'bigboi@money.com', location:'NYC', quantity:1}
+  {artistName: 'Big Boi', description: 'Fat jams all day', price: '104.00',genre:'RAP',email:'bigboi@money.com', location:'NYC', quantity:10}
 ], product => db.model('products').create(product));
 
 
