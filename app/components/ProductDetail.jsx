@@ -1,10 +1,9 @@
 import React from 'react';
-import NavBarContainer from '../containers/NavBarContainer';
 import axios from 'axios';
 
 class ProductDetail extends React.Component{
-  constructor(props){
-    super(props);
+  constructor(){
+    super();
     this.state={
       selectedProduct: {}
     }
@@ -31,7 +30,7 @@ class ProductDetail extends React.Component{
 
   render(){
     let quantity=this.getQuantityArray();
-
+    console.log(this.props, "product props");
     let quantityRender;
     if(quantity.length!==0) {
          quantityRender =  quantity.map((q,i) => {
@@ -45,7 +44,6 @@ class ProductDetail extends React.Component{
 
     return(
       <div>
-        <NavBarContainer />
         <div className="col-md-8">
           <h1>{this.state.selectedProduct.artistName}</h1>
           <p>{this.state.selectedProduct.description}</p>

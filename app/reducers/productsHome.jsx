@@ -45,7 +45,6 @@ export function getProducts() {
 };
 
 export function setSelected(prod) {
-  console.log("clicked button", prod)
   return (dispatch) => {
     dispatch(selectProduct(prod));
   };
