@@ -1,18 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
-// import { } from '../reducers/productsHome.js';
+import { getProducts } from '../reducers/productsHome.jsx';
 import ProductsHome from '../components/ProductsHome.jsx';
 
 function mapStateToProps (state) {
   return {
-    text: state.products
+    products: state.products
   };
 };
 
 function mapDispatchToProps (dispatch) {
   return {
-    searchLyrics ({artistQuery, songQuery}) {
-      dispatch(searchLyrics(artistQuery, songQuery));
+    receiveProducts () {
+      dispatch(getProducts());
     }
   };
 };

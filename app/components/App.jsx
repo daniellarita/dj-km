@@ -1,5 +1,5 @@
 import React from 'react'
-import Products from './Products';
+import ProductsHomeContainer from '../containers/ProductsHomeContainer.jsx';
 import NavBarContainer from '../containers/NavBarContainer';
 import SearchFilter from './SearchFilter';
 import { Link } from 'react-router';
@@ -9,7 +9,7 @@ const App = (props)=>{
     <div>
       <NavBarContainer />
       <SearchFilter />
-      <Products />
+      <ProductsHomeContainer />
       <Link to="/product">Click here for demo product detail page</Link>
     </div>
   );

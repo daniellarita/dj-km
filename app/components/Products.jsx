@@ -16,9 +16,9 @@ class Products extends React.Component {
     });
   }
 
-  render() { 
+  render() {
 
-    let djRender;           
+    let djRender;
     if(this.state.djArray.length!==0) {
          djRender =  this.state.djArray.map((dj,i) => {
                       return (
