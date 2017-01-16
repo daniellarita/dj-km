@@ -92,6 +92,11 @@ customOrderRoutes.get('/:orderNumber/products', function (request, response, nex
 // Orders POST
 // Request.body must have
 // - user_id: is an id (id is a string)
+
+// - productIds: is an ARRAY of product ids (ids are strings)
+// - quantity should be on the body (quantity must be an integer because the model schema demands it!)
+// it doesn't make sense to handle quantity on the post route now that I think about it because we don't want the user to be able to 'submit' the order if we are out of stock. The whole point of having the quantity column is to validate whether we can approve the purchase.  So we have to validate quantity on 'state' and throw a front end warning/block as well as disable the submit button. Check the product table for the instance method I wrote - that instance method should be called before post route is hit. This being said we have to somehow handle the post route for security purposes --> if someone hacks the api and submits an order for stock that isn't available how do we handle?
+
 // - products: array of objects. Each object has
       // - pId (strings)
       // - quantity (strings)
@@ -107,6 +112,7 @@ customOrderRoutes.get('/:orderNumber/products', function (request, response, nex
 //   "user_id": "2",
 //   "quantity": ["10", "20"]
 // }
+
 
 customOrderRoutes.post('/', function (request, response, next) {
 
