@@ -6,7 +6,7 @@ import { Link } from 'react-router';
 const NavBar = (props) =>{
   return(
     <div>
-      <nav className="navbar navbar-default">
+      <nav className="navbar navbar-default navbar-fixed-top">
         <div className="container-fluid">
           <div className="navbar-header">
             <Link to="/">
