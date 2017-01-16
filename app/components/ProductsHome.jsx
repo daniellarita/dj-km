@@ -21,33 +21,39 @@ class ProductsHome extends React.Component {
           prod.products && prod.products.length>0 && prod.products.map((curr, i) => {
             return(
               <div key={i}>
-                <div className="col-xs-4 col-lg-4">
+                <div className="col-md-4">
+
                     <Link
                       onClick={()=>this.props.selectProduct(curr)}
                       to={`/products/${curr.id}`}
                       >
                       <h4>{curr.artistName}</h4>
                     </Link>
+
                     <div className="thumbnail">
+
                       <Link
                         onClick={()=>this.props.selectProduct(curr)}
                         to={`/products/${curr.id}`}
                         >
                         <img src={curr.image} />
                       </Link>
+
                       <div className="caption">
                         <h4>{curr.artistName}</h4>
                         <p>{curr.description}</p>
                         <div className="row">
-                          <div className="col-xs-12 col-md-6">
+                          <div className="col-md-6">
                               <p>$ {curr.price}</p>
                           </div>
-                          <div className="col-xs-12 col-md-6">
+                          <div className="col-md-6">
                               <a className="btn btn-success" href="">Add to cart</a>
                           </div>
                         </div>
                       </div>
+
                     </div>
+
                 </div>
               </div>
             )
