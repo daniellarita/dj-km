@@ -1,14 +1,16 @@
 import React from 'react'
-import Products from './Products';
-import NavBar from './NavBar';
-import Login from './Login';
+import ProductsHomeContainer from '../containers/ProductsHomeContainer.jsx';
+import NavBarContainer from '../containers/NavBarContainer';
+import SearchFilter from './SearchFilter';
+import { Link } from 'react-router';
 
 const App = (props)=>{
   return(
     <div>
-      <NavBar />
-      <Login />
-      <Products />
+      <NavBarContainer />
+        {
+            props.children && React.cloneElement(props.children, props)
+        }
     </div>
   );
 }

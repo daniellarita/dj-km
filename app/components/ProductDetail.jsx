@@ -1,30 +1,71 @@
 import React from 'react';
+import axios from 'axios';
 
-const NavBar = (props) =>{
-  return(
-    <div>
-      <nav className="navbar navbar-default">
-        <div className="container-fluid">
-          <div className="navbar-header">
-            <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-              <span className="sr-only">Toggle navigation</span>
-              <span className="icon-bar"></span>
-              <span className="icon-bar"></span>
-              <span className="icon-bar"></span>
-            </button>
-            <a className="navbar-brand" href="#">DJ KM</a>
-          </div>
-          <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul className="nav navbar-nav navbar-right">
-              <li><a href="#">Create Account</a></li>
-              <li><a href="#">View Cart</a></li>
-              <li><a href="#">Sign in</a></li>
-            </ul>
+class ProductDetail extends React.Component{
+  constructor(){
+    super();
+    this.state={
+      selectedProduct: {}
+    }
+  }
 
-          </div>
+  componentDidMount(){
+    axios.get('/api/products/2')
+      .then((result) => {
+        this.setState({
+          selectedProduct:result.data
+        })
+        console.log(this.state);
+      })
+  }
+
+  getQuantityArray(){
+    let q=this.state.selectedProduct.quantity;
+    var qArray=[];
+    for (let i=1;i<=q;i++){
+      qArray.push(i)
+    }
+    return qArray;
+  }
+
+  render(){
+    let quantity=this.getQuantityArray();
+    console.log(this.props, "product props");
+    let quantityRender;
+    if(quantity.length!==0) {
+         quantityRender =  quantity.map((q,i) => {
+                      return (
+                        <option key={i}>
+                          {q}
+                        </option>
+                      )
+                    })
+                  }
+
+    return(
+      <div>
+        <div className="col-md-8">
+          <h1>{this.state.selectedProduct.artistName}</h1>
+          <p>{this.state.selectedProduct.description}</p>
+          <img src={this.state.selectedProduct.giveImage}></img>
+          <div>Audio Sample Placeholder</div>
         </div>
-      </nav>
-    </div>
-  )
+        <div className="col-md-4">
+          <h4>Price</h4>
+          <p>{`$${this.state.selectedProduct.price}`}</p>
+          <h4>Genre</h4>
+          <p>{this.state.selectedProduct.genre}</p>
+          <h4>Location</h4>
+          <p>{this.state.selectedProduct.location}</p>
+          <h4>Quantity</h4>
+          <select>
+            { quantityRender }
+          </select>
+          <button className="btn-primary">Add to Cart</button>
+        </div>
+      </div>
+    )
+  }
 }
-export default NavBar;
+
+export default ProductDetail;
