@@ -7,10 +7,12 @@ import { Link } from 'react-router';
 const App = (props)=>{
     return(
     <div>
-      <NavBarContainer />
+      <NavBarContainer/>
+      <div style={{marginTop: '80px'}}>
         {
-            props.children && React.cloneElement(props.children, props)
+          props.children && React.cloneElement(props.children, props)
         }
+      </div>
     </div>
   );
 }

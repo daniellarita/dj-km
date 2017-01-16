@@ -64,12 +64,17 @@ class ProductsHome extends React.Component {
       </div>
 
       <div className="text-center">
-        <Link onClick={(event) => this.props.loadMore(event)}
-          className="btn btn-default btn-sm"
-          href=""
-        >
-        Load More...
-        </Link>
+        {
+          this.props.currIndex < prod.products.length ?
+          <Link onClick={(event) => this.props.loadMore(event)}
+            className="btn btn-default btn-sm"
+            href=""
+            >
+            Load More...
+          </Link>
+          :
+          null
+        }
       </div>
     </div>
     );

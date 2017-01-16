@@ -6,7 +6,7 @@ import { Link } from 'react-router';
 const NavBar = (props) =>{
   return(
     <div>
-      <nav className="navbar navbar-default">
+      <nav className="navbar navbar-default navbar-fixed-top">
         <div className="container-fluid">
           <div className="navbar-header">
             <Link to="/">
@@ -25,7 +25,7 @@ const NavBar = (props) =>{
 
               { props.user && props.user.email ?
                 <div>
-                  <li><a href="#">{props.user.name}'s Account</a></li>
+                  <li><a href="#">`{props.user.name}'s Account`</a></li>
                   <li><a href="#">View Cart</a></li>
                   <li><a onClick={props.handleLogout} href="#">Sign Out</a></li>
                 </div>

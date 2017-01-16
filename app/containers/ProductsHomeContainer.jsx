@@ -24,7 +24,6 @@ function mapDispatchToProps (dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-// )(ProductsHome);
 )(class extends React.Component {
 
   constructor (props) {
