@@ -24,4 +24,28 @@ function mapDispatchToProps (dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ProductsHome);
+// )(ProductsHome);
+)(class extends React.Component {
+
+  constructor (props) {
+    super(props);
+    this.state = { currIndex: 3 };
+    this.loadMore = this.loadMore.bind(this);
+  }
+
+  loadMore(event) {
+    event.preventDefault();
+    let newIndex = this.state.currIndex + 3;
+    this.setState({currIndex: newIndex})
+  }
+
+  render () {
+    return (
+      <ProductsHome
+        {...this.state}
+        {...this.props}
+        loadMore={this.loadMore}
+      />
+    );
+  }
+});

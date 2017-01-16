@@ -3,11 +3,13 @@ import axios from 'axios';
 import { Link } from 'react-router';
 
 class ProductsHome extends React.Component {
+
   componentDidMount() {
     this.props.receiveProducts();
   }
 
   render() {
+    console.log(this.props.currIndex);
     let prod = this.props.products;
 
     return(
@@ -19,7 +21,7 @@ class ProductsHome extends React.Component {
         <div className="row">
         {
           prod.products && prod.products.length>0 && prod.products.map((curr, i) => {
-            return(
+            return i<this.props.currIndex ? (
               <div key={i}>
                 <div className="col-md-4">
 
@@ -56,9 +58,18 @@ class ProductsHome extends React.Component {
 
                 </div>
               </div>
-            )
+            ) : null
           })
         }
+      </div>
+
+      <div className="text-center">
+        <Link onClick={(event) => this.props.loadMore(event)}
+          className="btn btn-default btn-sm"
+          href=""
+        >
+        Load More...
+        </Link>
       </div>
     </div>
     );
