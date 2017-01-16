@@ -10,7 +10,7 @@ const Review = db.define('reviews', {
     validate: {
       minimumLength: function(text) {
       	if(text.length < 10) {
-      		throw new Error("Review should be greater than 10 characters please")
+      		throw new Error("Review should be greater than 10 characters please");
       	}
       }
     }

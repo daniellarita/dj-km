@@ -8,7 +8,8 @@ const User = require('./user');
 const Product = require('./product');
 const Review = require('./review');
 const Order = require('./order');
-const OrderProduct = require('./orderproduct')
+
+const OrderProduct = require('./order-product');
 
 // Product <--> Review
 Product.hasMany(Review);

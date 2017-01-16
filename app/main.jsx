@@ -11,25 +11,13 @@ import WhoAmI from './components/WhoAmI';
 import Products from './components/Products';
 import NavBar from './components/NavBar';
 import App from './components/App';
-
-
-const ExampleApp = connect(
-  ({ auth }) => ({ user: auth })
-) (
-  ({ user, children }) =>
-    <div>
-      <nav>
-        {user ? <WhoAmI/> : <Login/>}
-      </nav>
-      {children}
-    </div>
-)
+import ShoppingCart from './components/ShoppingCart'
 
 render (
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/" component={App}>
-      </Route>
+      <Route path="/" component={App} />
+      <Route path='/ShoppingCart' component={ShoppingCart} />
     </Router>
   </Provider>,
   document.getElementById('main')
