@@ -22,10 +22,8 @@ render (
         <Route path="/products" component={ProductsHomeContainer} />
         <Route path="/products/:pId" component={ProductDetailContainer} />
         <IndexRedirect to='/products' />
+        <Route path='/ShoppingCart' component={ShoppingCart} />
       </Route>
-      <Route path='/ShoppingCart' component={ShoppingCart} />
-
-
     </Router>
   </Provider>,
   document.getElementById('main')
