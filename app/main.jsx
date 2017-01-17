@@ -12,6 +12,8 @@ import ShoppingCart from './components/ShoppingCart'
 
 import ProductDetailContainer from './containers/ProductDetailContainer.jsx';
 import ProductsHomeContainer from './containers/ProductsHomeContainer.jsx';
+import AccountContainer from './containers/AccountContainer.jsx';
+
 
 
 render (
@@ -23,6 +25,7 @@ render (
         <Route path="/products/:pId" component={ProductDetailContainer} />
         <IndexRedirect to='/products' />
         <Route path='/ShoppingCart' component={ShoppingCart} />
+        <Route path='/account' component={AccountContainer} />
       </Route>
     </Router>
   </Provider>,

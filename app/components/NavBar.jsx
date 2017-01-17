@@ -25,10 +25,16 @@ const NavBar = (props) =>{
 
               { props.user && props.user.email ?
                 <div>
-                  <li><a href="#">{props.user.name}'s Account</a></li>
-                  <Link to="/shoppingcart">
-                    View Cart
-                  </Link>
+                  <li>
+                    <Link to="/account">
+                    {props.user.name}'s Account
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/shoppingcart">
+                      View Cart
+                    </Link>
+                  </li>
                   <li><a onClick={props.handleLogout} href="#">Sign Out</a></li>
                 </div>
                 :
