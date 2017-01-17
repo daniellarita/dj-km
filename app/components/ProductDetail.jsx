@@ -4,23 +4,30 @@ import axios from 'axios';
 class ProductDetail extends React.Component{
   constructor(){
     super();
-    this.state={
-      selectedProduct: {}
-    }
+    this.state = ({
+      updatedProduct: {}
+    })
+
 
         this.addToCart = this.addToCart.bind(this);
+        this.updateQuantity = this.updateQuantity.bind(this);
 
   }
 
   componentDidMount(){
-    // axios.get('/api/products/2')
-    //   .then((result) => {
-    //     this.setState({
-    //       selectedProduct:result.data
-    //     })
-    //     console.log(this.state);
-    //   })
+    this.setState({updatedProduct: this.props.selectedProduct});
   }
+
+updateQuantity(event){
+  event.preventDefault();
+  const temp = this.state.updatedProduct;
+    temp.quantity = event.target.value;
+    this.setState({updatedProduct: temp})
+      console.log(this.state);
+  
+
+  // console.log(this.props.selectedProduct.quantity)
+}
 
 addToCart(event,obj){
   event.preventDefault();
@@ -51,7 +58,7 @@ addToCart(event,obj){
                       )
                     })
                   }
-
+  console.log(this.state)
     return(
       <div>
         <div className="col-md-8">
@@ -68,10 +75,10 @@ addToCart(event,obj){
           <h4>Location</h4>
           <p>{this.props.selectedProduct.location}</p>
           <h4>Quantity</h4>
-          <select>
+          <select onChange={(event)=>this.updateQuantity(event)}>
             { quantityRender }
           </select>
-          <button className="btn-primary" onClick={(event)=>addToCart(event,)}>Add to Cart</button>
+          <button className="btn-primary" onClick={(event)=>this.addToCart(event,this.state.updatedProduct)}>Add to Cart</button>
         </div>
       </div>
     )
