@@ -7,6 +7,9 @@ class ProductDetail extends React.Component{
     this.state={
       selectedProduct: {}
     }
+
+        this.addToCart = this.addToCart.bind(this);
+
   }
 
   componentDidMount(){
@@ -18,6 +21,12 @@ class ProductDetail extends React.Component{
     //     console.log(this.state);
     //   })
   }
+
+addToCart(event,obj){
+  event.preventDefault();
+  this.props.addToCart_func(obj)
+}
+
 
   getQuantityArray(){
     let q=this.props.selectedProduct.quantity;
@@ -62,7 +71,7 @@ class ProductDetail extends React.Component{
           <select>
             { quantityRender }
           </select>
-          <button className="btn-primary">Add to Cart</button>
+          <button className="btn-primary" onClick={(event)=>addToCart(event,)}>Add to Cart</button>
         </div>
       </div>
     )
