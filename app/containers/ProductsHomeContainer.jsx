@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getProducts, setSelected } from '../reducers/productsHome.jsx';
 import ProductsHome from '../components/ProductsHome.jsx';
+import{addToCart} from '../reducers/ShoppingCart_reducer.jsx'
 
 function mapStateToProps (state) {
   return {
@@ -17,6 +18,9 @@ function mapDispatchToProps (dispatch) {
     },
     selectProduct (prod) {
       dispatch(setSelected(prod));
+    },
+    addToCart_func(obj) {
+      dispatch(addToCart(obj));
     }
   };
 };
