@@ -39,41 +39,41 @@ export const addToCart = (obj) => {
 
 //initializing state
 const initialState= {
-  // shoppingCart: []
+  shoppingCart: []
 
-shoppingCart: [
-{giveImage: "/dj-default.png",
-id: 1,
-artistName: "Big Boi",
-description: "Fat jams all day",
-price: 104,
-image: null,
-genre: "RAP",
-location: "NYC",
-email: "bigboi@money.com",
-audioSample: null,
-rating: null,
-quantity: 1
+// shoppingCart: [
+// {giveImage: "/dj-default.png",
+// id: 1,
+// artistName: "Big Boi",
+// description: "Fat jams all day",
+// price: 104,
+// image: null,
+// genre: "RAP",
+// location: "NYC",
+// email: "bigboi@money.com",
+// audioSample: null,
+// rating: null,
+// quantity: 1
 
-},
+// },
 
-{giveImage: "/dj-default.png",
-id: 2,
-artistName: "yo",
-description: "Fat jams all day",
-price: 104,
-image: null,
-genre: "RAP",
-location: "NYC",
-email: "bigboi@money.com",
-audioSample: null,
-rating: null,
-quantity: 1
+// {giveImage: "/dj-default.png",
+// id: 2,
+// artistName: "yo",
+// description: "Fat jams all day",
+// price: 104,
+// image: null,
+// genre: "RAP",
+// location: "NYC",
+// email: "bigboi@money.com",
+// audioSample: null,
+// rating: null,
+// quantity: 1
 
-}
+// }
 
 
-]
+// ]
 
 };
 
@@ -94,7 +94,8 @@ export default function (state = initialState, action) {
       break;
 
     case ADD_TO_CART:
-      newState.shoppingCart = newState.shoppingCart.push(action.payload);
+      // console.log(action.payload);
+      newState.shoppingCart.push(action.payload);
       break;
       
 

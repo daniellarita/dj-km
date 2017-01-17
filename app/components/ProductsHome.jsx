@@ -4,9 +4,24 @@ import { Link } from 'react-router';
 
 class ProductsHome extends React.Component {
 
+  constructor(){
+    super();
+
+    this.addToCart = this.addToCart.bind(this);
+
+  }
+
+
+
   componentDidMount() {
     this.props.receiveProducts();
   }
+
+ addToCart(event,obj){
+  event.preventDefault();
+  this.props.addToCart_func(obj)
+}
+
 
   render() {
     console.log(this.props.currIndex);
@@ -49,7 +64,7 @@ class ProductsHome extends React.Component {
                               <p>$ {curr.price}</p>
                           </div>
                           <div className="col-md-6">
-                              <a className="btn btn-success" href="">Add to cart</a>
+                              <a className="btn btn-success" href="" onClick={(event)=>this.addToCart(event, curr)}>Add to cart</a>
                           </div>
                         </div>
                       </div>
