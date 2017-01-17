@@ -1,6 +1,5 @@
 
 import React from 'react';
-import Products from './Products';
 import ProductsHomeContainer from '../containers/ProductsHomeContainer.jsx';
 import NavBarContainer from '../containers/NavBarContainer';
 import SearchFilter from './SearchFilter';
