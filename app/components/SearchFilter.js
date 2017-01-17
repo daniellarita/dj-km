@@ -74,7 +74,6 @@ class SearchFilter extends Component {
 
 	return(
     <div className="container">
-      <form onSubmit = {this.handleSubmit} >
         <div className="form-group row">
           <label className="col-sm-2 col-form-label">Search</label>
           <div className="col-sm-10">
@@ -118,10 +117,10 @@ class SearchFilter extends Component {
 
         <div className="form-group row">
           <div className="offset-sm-2 col-sm-10">
-            <button type="submit" className="btn btn-primary"> ♫ Find my DJ ♫ </button>
+            <button onClick = {this.handleSubmit} className="btn btn-primary"> ♫ Find my DJ ♫ </button>
           </div>
         </div>
-      </form>
+
 
     </div>
 
