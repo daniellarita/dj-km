@@ -86,6 +86,12 @@ const Product = db.define('products', {
         this.rating = sum / arr.length;
       })
       .catch(console.log);
+    },
+
+    updateQuantity: function(val){
+      if((this.quantity - val) > 0){
+        this.quantity -= val;
+      } else throw new Error("Cannot purchase this quantity of items.  There are only " + this.quantity + " left")
     }
   }
 });

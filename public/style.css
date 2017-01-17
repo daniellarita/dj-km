@@ -1,0 +1,33 @@
+.btn-primary{
+  margin:5px
+}
+
+.ShoppingCart_div{
+	margin: 2%;
+}
+
+.glyphicon-remove{
+	color: gray;
+}
+
+.glyphicon-remove:hover{
+	color:red;
+}
+
+.removeMark{
+	vertical-align: middle;
+
+}
+
+.input-group{
+	width: 20%;
+}
+
+.align{
+	vertical-align: middle;
+}
+
+.quantity-update:hover{
+	background-color: green;
+	border:none;
+};

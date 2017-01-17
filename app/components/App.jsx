@@ -7,10 +7,12 @@ import { Link } from 'react-router';
 const App = (props) => {
   return (
     <div>
-      <NavBarContainer />
-      <SearchFilter />
-      <Products />
-      <Link to="/product">Click here for demo product detail page</Link>
+      <NavBarContainer/>
+      <div style={{marginTop: '80px'}}>
+        {
+          props.children && React.cloneElement(props.children, props)
+        }
+      </div>
     </div>
   );
 };
