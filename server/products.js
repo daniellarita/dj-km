@@ -1,4 +1,5 @@
 'use strict'
+const Sequelize = require('sequelize');
 
 const epilogue = require('./epilogue');
 const db = require('APP/db');
@@ -29,6 +30,14 @@ customProductsRoutes.get('/:productId', function(request,response,next){
   })
   .catch(next);
 })
+
+customProductsRoutes.get('/all/locations', function (request, response, next) {
+
+    Product.aggregate('location', 'DISTINCT', { plain: false })
+    .then(arrayOfResults => {
+      response.json(arrayOfResults);
+    });
+  });
 
 customProductsRoutes.post('/', function(request,response,next){
   const dj={

@@ -1,10 +1,11 @@
 'use strict'
-import React from 'react'
-import {Router, Route, IndexRedirect, browserHistory} from 'react-router'
-import {render} from 'react-dom'
-import {connect, Provider} from 'react-redux'
+import React from 'react';
+import { Router, Route, IndexRedirect, browserHistory } from 'react-router';
+import { render } from 'react-dom';
+import { connect, Provider } from 'react-redux';
 
-import store from './store'
+import store from './store';
+
 // import Jokes from './components/Jokes'
 import App from './components/App';
 
@@ -16,7 +17,7 @@ import AccountContainer from './containers/AccountContainer.jsx';
 
 
 
-render (
+render(
   <Provider store={store}>
     <Router history={browserHistory}>
 
@@ -30,4 +31,4 @@ render (
     </Router>
   </Provider>,
   document.getElementById('main')
-)
+);
