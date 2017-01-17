@@ -8,13 +8,26 @@ import store from './store';
 
 // import Jokes from './components/Jokes'
 import App from './components/App';
-import ProductDetailContainer from './containers/ProductDetailContainer';
+
+import ShoppingCart from './components/ShoppingCart'
+
+import ProductDetailContainer from './containers/ProductDetailContainer.jsx';
+import ProductsHomeContainer from './containers/ProductsHomeContainer.jsx';
+import AccountContainer from './containers/AccountContainer.jsx';
+
+
 
 render(
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/" component={App} />
-      <Route path="/product" component={ProductDetailContainer} />
+
+      <Route path="/" component={App} >
+        <Route path="/products" component={ProductsHomeContainer} />
+        <Route path="/products/:pId" component={ProductDetailContainer} />
+        <IndexRedirect to='/products' />
+        <Route path='/ShoppingCart' component={ShoppingCart} />
+        <Route path='/account' component={AccountContainer} />
+      </Route>
     </Router>
   </Provider>,
   document.getElementById('main')

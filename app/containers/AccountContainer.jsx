@@ -1,23 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import ProductDetail from '../components/ProductDetail';
-import{addToCart} from '../reducers/ShoppingCart_reducer.jsx'
+import Account from '../components/Account';
 
 const mapStateToProps = state => {
   return {
-      selectedProduct: state.products.selected
+      // selectedProduct: state.products.selected
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-  	 addToCart_func(obj) {
-      dispatch(addToCart(obj));
-    }
+
   };
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ProductDetail);
+)(Account);
