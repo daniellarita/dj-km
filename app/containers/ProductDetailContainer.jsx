@@ -4,7 +4,7 @@ import ProductDetail from '../components/ProductDetail';
 
 const mapStateToProps = state => {
   return {
-      user: state.auth
+      selectedProduct: state.products.selected
   };
 };
 

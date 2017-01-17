@@ -9,7 +9,7 @@ class ProductsHome extends React.Component {
   }
 
   render() {
-    console.log(this.props.currIndex);
+    console.log(this.props);
     let prod = this.props.products;
 
     return(
