@@ -56,8 +56,7 @@ class SearchFilter extends Component {
 
 
 	render(){
-    const options = <div>
-                          <h2> Location </h2>
+    const options = <div className="col-sm-2">
                           <select onChange={(event) => this.setState({location: event.target.value})}>
 													<option value={""}> {"Select Location"} </option>
                             {this.state.options.length && this.state.options.map((location, index) => {
@@ -74,24 +73,15 @@ class SearchFilter extends Component {
 
 	return(
     <div className="container">
-        <div className="form-group row">
-          <label className="col-sm-2 col-form-label">Search</label>
-          <div className="col-sm-10">
-            <input onChange={(event) => this.setState({name: event.target.value})} type="text" />
-          </div>
-        </div>
 
-        <h2> Select your Genres </h2>
-        <div className="form-check form-check-inline">
-          <label className="form-check-label">
+          <div className="col-sm-2">
+            <input onChange={(event) => this.setState({name: event.target.value})} placeholder="Enter DJ Name" type="text" />
+          </div>
+
+        <div className=" col-sm-4 form-check form-check-inline">
             <input className="form-check-input" type="checkbox" onChange={(event) => this.setState({country: event.target.checked})} value="Country" /> Country
-          </label>
-          <label className="form-check-label">
             <input className="form-check-input" type="checkbox" onChange={(event) => this.setState({rap: event.target.checked})} value="Rap" /> Rap
-          </label>
-          <label className="form-check-label">
             <input className="form-check-input" type="checkbox" onChange={(event) => this.setState({techno: event.target.checked})} value="Techno" /> Techno
-          </label>
         </div>
 
         {
@@ -99,18 +89,15 @@ class SearchFilter extends Component {
           ? options
           : null
         }
-
-        <h2> Rating </h2>
-        <div className="form-check form-check-inline">
+				
+        <div className="col-sm-2 form-check form-check-inline">
 						<select onChange={(event) => this.setState({rating: event.target.value})}>
 							<option value={""}> {"Select Rating"} </option>
 							{ arrOfRatings }
 						</select>
         </div>
 
-        <h2> Price </h2>
-
-        <div className="form-group row">
+        <div className="col-sm-4 form-group row">
             <input onChange={(event) => this.setState({min: parseInt(event.target.value)})} type="text" /> to
             <input onChange={(event) => this.setState({max: parseInt(event.target.value)})} type="text" />
         </div>
