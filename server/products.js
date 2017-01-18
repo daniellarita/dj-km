@@ -86,6 +86,33 @@ customProductsRoutes.delete('/:productId',function(request,response,next){
   .catch(next);
 })
 
+const getQueryInfo = function(query){
+  const queryInfo={};
+  if (query.name) queryInfo.name=query.name;
+  if (query.location) queryInfo.location=query.location;
+  if (query.rating) queryInfo.rating=query.rating;
+  if (query.genre) queryInfo.genre=query.genre;
+  if (query.minPrice) queryInfo.minPrice=query.minPrice;
+  if (query.maxPrice) queryInfo.maxPrice=query.maxPrice;
+  return queryInfo;
+}
+
+customProductsRoutes.get('/search/filter', function(request, response, next){
+  console.log("REQUEST QUERY",request.query)
+  const queryInfo = getQueryInfo(request.query);
+  console.log("query info",queryInfo);
+
+  Product.findAll({
+    where:{
+      location:request.query.location
+    }
+  })
+  .then(products =>{
+    response.json(products)
+  })
+  .catch(next);
+})
+
 module.exports = customProductsRoutes
 
 // Epilogue will automatically create standard RESTful routes

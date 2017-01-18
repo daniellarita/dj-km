@@ -1,12 +1,12 @@
 import axios from 'axios'
 
 const initialState = {
-    name: "",
-    min: 0,
-    max: 0,
-    location: "",
-    genres: [],
-    rating: ""
+    name: -1,
+    min: -1,
+    max: -1,
+    location: "San Francisco",
+    genres: -1,
+    rating: -1
 }
 
 const reducer = (state=initialState, action) => {

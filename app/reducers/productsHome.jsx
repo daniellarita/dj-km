@@ -1,4 +1,5 @@
 import axios from 'axios';
+import store from '../store.jsx';
 
 const GET_PRODUCTS = "GET_PRODUCTS";
 const SELECT_PRODUCT="SELECT_PRODUCT";
@@ -35,10 +36,23 @@ export const selectProduct = (product) => ({
 });
 
 export function getProducts() {
+  console.log(store.getState());
+  const searchFilter=store.getState().searchfilter;
+  let queryString='?';
+
+  for (var key in searchFilter){
+    console.log("in for loop")
+    if (searchFilter[key]!==-1){
+      queryString+=key+'='+searchFilter[key];
+      console.log(queryString);
+    }
+  }
+
+  console.log("QUERY STRING",queryString);
+
   return (dispatch) => {
-    return axios.get(`/api/products`)
+    return axios.get(`/api/products/search/filter`+queryString)
     .then((results) => {
-      console.log(results.data);
       dispatch(setProductsOnBrowser(results.data));
     });
   };
