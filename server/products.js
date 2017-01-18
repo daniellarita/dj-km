@@ -26,7 +26,7 @@ customProductsRoutes.get('/:productId', function(request,response,next){
     }
   })
   .then((product)=>{
-    response.json(product)
+    response.status(200).json(product)
   })
   .catch(next);
 })
