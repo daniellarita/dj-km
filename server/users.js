@@ -19,14 +19,10 @@ customUserRoutes.post('/', function (request, response, next) {
         email: request.body.email,
         password: request.body.password
     }
-
- User.create(newUserToCreate)
- .then((result) => {
-   response.sendStatus(201);
- }).catch(function(err){
-   console.log(err)
-   next();
- });
+   User.create(newUserToCreate)
+     .then((user) => {
+       response.sendStatus(201);
+     }).catch(next);
 });
 
 customUserRoutes.delete('/:userId', function (request, response, next) {
