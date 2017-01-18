@@ -16,7 +16,7 @@ describe('/api/users', () => {
       request(app)
         .post('/api/users')
         .send({
-          email: 'beth1@secrets.org',
+          email: 'beth2@secrets.org',
           password: '12345'
         })
         .expect(201)
@@ -26,7 +26,7 @@ describe('/api/users', () => {
       request(app)
         .post('/api/users')
         .send({
-          email: 'eve@interloper.com',
+          email: 'eve2@interloper.com',
           password: '23456',
         })
         .redirects(1)
@@ -36,6 +36,7 @@ describe('/api/users', () => {
     )
   })
 })
+
 
 describe('/api/products', () => {
     it('GET /', () =>

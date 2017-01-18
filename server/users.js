@@ -15,12 +15,10 @@ customUserRoutes.get('/', function (request, response, next) {
 });
 
 customUserRoutes.post('/', function (request, response, next) {
-
     const newUserToCreate = {
         email: request.body.email,
         password: request.body.password
     }
-
    User.create(newUserToCreate)
      .then((user) => {
        response.sendStatus(201);
