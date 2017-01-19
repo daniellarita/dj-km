@@ -13,20 +13,15 @@ class Account extends React.Component {
     componentDidMount(){
       let userId=this.props.user.id;
       axios.get(`/api/reviews/users/${userId}`)
-        .then(reviews => {
-          console.log(reviews)
-          // reviews.data
-        })
+        .then(reviews => reviews.data)
         .then(reviews => {
           this.setState({reviews: reviews})
-        })
-
-        console.log(this.state.reviews);
+          })
     }
 
     render(){
       const user = this.props.user;
-      console.log("props in account",this.props)
+      console.log("REVIEWS LOC STATE", this.state.reviews)
       return(
         <div>
           <div className="col-md-8">
