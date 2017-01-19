@@ -15,7 +15,7 @@ class ProductsHome extends React.Component {
 
 
   componentDidMount() {
-    this.props.receiveProducts();
+    // this.props.receiveProducts();
   }
 
  addToCart(event,obj){

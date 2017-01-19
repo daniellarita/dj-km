@@ -4,20 +4,21 @@ import store from '../store.jsx'
 import Promise from 'bluebird';
 import axios from 'axios';
 import { queryInfo } from '../reducers/searchfilter';
+import { setProductsOnBrowser } from '../reducers/productsHome';
 
 class SearchFilter extends Component {
 	constructor(){
 		super();
 		this.state = {
-      name: "",
+      name: -1,
       options: [],
-      min: 0,
-      max: 0,
-      location: "",
+      min: -1,
+      max: -1,
+      location: -1,
 			country: false,
 			rap: false,
 			techno: false,
-			rating: "",
+			rating: -1
 		}
 
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -40,6 +41,7 @@ class SearchFilter extends Component {
 		if (this.state.country) genres.push("country");
 		if (this.state.rap)	genres.push("rap");
 		if (this.state.techno) genres.push("techno");
+    if (genres && genres.length ===0) genres=-1;
 
 		var searchfilterinfo = {
 			name: this.state.name,
@@ -89,7 +91,7 @@ class SearchFilter extends Component {
           ? options
           : null
         }
-				
+
         <div className="col-sm-2 form-check form-check-inline">
 						<select onChange={(event) => this.setState({rating: event.target.value})}>
 							<option value={""}> {"Select Rating"} </option>
@@ -124,9 +126,20 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return ({
-    handleSubmit: function(searchfilter) {
-    		dispatch(queryInfo(searchfilter))
-    },
+    handleSubmit: function(queryInfo){
+      var queryString='/?';
+      for (var key in queryInfo){
+        if (queryInfo[key] !== -1) {
+          queryString+=(key+'='+queryInfo[key]+'&');
+        }
+      }
+      queryString=queryString.slice(0,-1);
+      axios.get(`/api/products/search/filter${queryString}`)
+        .then(filteredProducts =>{
+          console.log(filteredProducts,"FILTERED PRODS")
+          dispatch(setProductsOnBrowser(filteredProducts.data));
+        })
+    }
   });
 };
 
