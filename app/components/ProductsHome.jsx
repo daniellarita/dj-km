@@ -15,7 +15,6 @@ class ProductsHome extends React.Component {
 
 
   componentDidMount() {
-    // this.props.receiveProducts();
   }
 
  addToCart(event,obj){
@@ -25,7 +24,6 @@ class ProductsHome extends React.Component {
 
 
   render() {
-    console.log(this.props);
     let prod = this.props.products;
 
     return(

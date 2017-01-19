@@ -4,7 +4,7 @@ import Account from '../components/Account';
 
 const mapStateToProps = state => {
   return {
-      // selectedProduct: state.products.selected
+      user: state.auth
   };
 };
 

@@ -136,7 +136,6 @@ const mapDispatchToProps = (dispatch) => {
       queryString=queryString.slice(0,-1);
       axios.get(`/api/products/search/filter${queryString}`)
         .then(filteredProducts =>{
-          console.log(filteredProducts,"FILTERED PRODS")
           dispatch(setProductsOnBrowser(filteredProducts.data));
         })
     }
