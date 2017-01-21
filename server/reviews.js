@@ -82,7 +82,6 @@ customReviewsRoutes.get('/users/:userId', function (request, response, next) {
     }
   })
   .then((reviewArray) => {
-    console.log(reviewArray);
     response.json(reviewArray);
   })
   .catch(next);
