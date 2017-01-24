@@ -15,17 +15,14 @@ customUserRoutes.get('/', function (request, response, next) {
 });
 
 customUserRoutes.post('/', function (request, response, next) {
-
     const newUserToCreate = {
         email: request.body.email,
-        password: request.body.password,
-        name: request.body.name
+        password: request.body.password
     }
-
- User.create(newUserToCreate)
- .then((result) => {
-   response.json(result);
- }).catch(next);
+   User.create(newUserToCreate)
+     .then((user) => {
+       response.sendStatus(201);
+     }).catch(next);
 });
 
 customUserRoutes.delete('/:userId', function (request, response, next) {
