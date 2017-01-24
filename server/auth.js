@@ -41,7 +41,7 @@ OAuth.setupStrategy({
   config: {
     clientID: env.FACEBOOK_CLIENT_ID,
     clientSecret: env.FACEBOOK_CLIENT_SECRET,
-    callbackURL: `${app.rootUrl}/api/auth/login/facebook`,
+    callbackURL: `${app.baseUrl}/api/auth/login/facebook`,
   },
   passport
 })
@@ -50,13 +50,13 @@ OAuth.setupStrategy({
 // environment variables.
 OAuth.setupStrategy({
   provider: 'google',
-  strategy: require('passport-google-oauth').Strategy,
+  strategy: require('passport-google-oauth20').Strategy,
   config: {
     // consumerKey: env.GOOGLE_CONSUMER_KEY,
     // consumerSecret: env.GOOGLE_CONSUMER_SECRET,
-    consumerKey: '444169114220-18uoi6t7bukvh0pk3e4ojck4s4cjhuq7.apps.googleusercontent.com',
-    consumerSecret: 'G06vM16MeGHZnvwAVflx9-UZ',
-    callbackURL: `${app.rootUrl}/api/auth/login/google`,
+    clientID: '444169114220-18uoi6t7bukvh0pk3e4ojck4s4cjhuq7.apps.googleusercontent.com',
+    clientSecret: 'G06vM16MeGHZnvwAVflx9-UZ',
+    callbackURL: `${app.baseUrl}/api/auth/google/login`,
   },
   passport
 })
@@ -69,7 +69,7 @@ OAuth.setupStrategy({
   config: {
     clientID: env.GITHUB_CLIENT_ID,
     clientSecrets: env.GITHUB_CLIENT_SECRET,
-    callbackURL: `${app.rootUrl}/api/auth/login/github`,
+    callbackURL: `${app.baseUrl}/api/auth/login/github`,
   },
   passport
 })
@@ -77,9 +77,7 @@ OAuth.setupStrategy({
 // Other passport configuration:
 
 passport.serializeUser((user, done) => {
-  debug('will serialize user.id=%d', user.id)
   done(null, user.id)
-  debug('did serialize user.id=%d', user.id)
 })
 
 passport.deserializeUser(
@@ -123,10 +121,13 @@ passport.use(new (require('passport-local').Strategy) (
 
 auth.get('/whoami', (req, res) => res.send(req.user))
 
-auth.post('/:strategy/login', (req, res, next) =>
+auth.get('/:strategy/login', (req, res, next) =>
   passport.authenticate(req.params.strategy, {
+    scope: 'email', 
     successRedirect: '/'
   })(req, res, next)
+
+
 )
 
 auth.post('/logout', (req, res, next) => {
