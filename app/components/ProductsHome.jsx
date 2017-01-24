@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router';
+import SearchFilter from './SearchFilter';
 
 class ProductsHome extends React.Component {
 
@@ -14,7 +15,6 @@ class ProductsHome extends React.Component {
 
 
   componentDidMount() {
-    this.props.receiveProducts();
   }
 
  addToCart(event,obj){
@@ -24,14 +24,15 @@ class ProductsHome extends React.Component {
 
 
   render() {
-    console.log(this.props);
     let prod = this.props.products;
 
     return(
       <div>
         <h1>Welcome to DJKM!</h1>
         <div className="well well-sm">
-          <strong>Hire a DJ</strong>
+          <strong>Hire a DJ
+            <SearchFilter />
+          </strong>
         </div>
         <div className="row">
         {

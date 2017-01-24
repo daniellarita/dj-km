@@ -13,9 +13,9 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    receiveProducts () {
-      dispatch(getProducts());
-    },
+    // receiveProducts () {
+    //   dispatch(getProducts());
+    // },
     selectProduct (prod) {
       dispatch(setSelected(prod));
     },
@@ -42,7 +42,6 @@ export default connect(
   componentDidMount() {
     window.addEventListener('scroll', () => {
       if ((window.innerHeight + window.scrollY) === document.body.offsetHeight + 95 && this.state.scroll) {
-        console.log("bottom of page")
         this.infiniteScroll();
       }
       // console.log("hey", document.body.scrollTop, window.innerHeight+window.scrollY, document.body.offsetHeight);

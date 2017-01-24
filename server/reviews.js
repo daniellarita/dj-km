@@ -74,6 +74,20 @@ customReviewsRoutes.delete('/:reviewId', function (request, response, next) {
   .catch(next);
 });
 
+// route to show reviews on user account page
+customReviewsRoutes.get('/users/:userId', function (request, response, next) {
+  Review.findAll({
+    where :{
+      user_id:request.params.userId
+    }
+  })
+  .then((reviewArray) => {
+    response.json(reviewArray);
+  })
+  .catch(next);
+});
+
+
 
 
 module.exports = customReviewsRoutes;

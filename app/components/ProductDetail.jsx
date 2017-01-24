@@ -23,10 +23,6 @@ updateQuantity(event){
   const temp = this.state.updatedProduct;
     temp.quantity = event.target.value;
     this.setState({updatedProduct: temp})
-      console.log(this.state);
-  
-
-  // console.log(this.props.selectedProduct.quantity)
 }
 
 addToCart(event,obj){
@@ -46,7 +42,6 @@ addToCart(event,obj){
 
   render(){
     let quantity=this.getQuantityArray();
-    console.log(this.props, "product props");
 
     let quantityRender;
     if(quantity.length!==0) {
@@ -58,7 +53,6 @@ addToCart(event,obj){
                       )
                     })
                   }
-  console.log(this.state)
     return(
       <div>
         <div className="col-md-8">

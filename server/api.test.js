@@ -10,13 +10,46 @@ describe('/api/users', () => {
       request(app)
         .get(`/api/users/1`)
         .expect(401)
-    )    
+    )
 
     it('POST creates a user', () =>
       request(app)
         .post('/api/users')
         .send({
-          email: 'beth@secrets.org',
+          email: 'beth2@secrets.org',
+          password: '12345'
+        })
+        .expect(201)
+    )
+
+    it('POST redirects to the user it just made', () =>
+      request(app)
+        .post('/api/users')
+        .send({
+          email: 'eve2@interloper.com',
+          password: '23456',
+        })
+        .redirects(1)
+        .then(res => expect(res.body).to.contain({
+          email: 'eve@interloper.com'
+        }))
+    )
+  })
+})
+
+
+describe('/api/products', () => {
+    it('GET /', () =>
+      request(app)
+        .get(`/api/products/1`)
+        .expect(200)
+    )
+
+    it('POST creates a user', () =>
+      request(app)
+        .post('/api/users')
+        .send({
+          email: 'beth1@secrets.org',
           password: '12345'
         })
         .expect(201)
@@ -32,7 +65,6 @@ describe('/api/users', () => {
         .redirects(1)
         .then(res => expect(res.body).to.contain({
           email: 'eve@interloper.com'
-        }))        
+        }))
     )
-  })
 })

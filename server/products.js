@@ -1,4 +1,5 @@
 'use strict'
+const Sequelize = require('sequelize');
 
 const epilogue = require('./epilogue');
 const db = require('APP/db');
@@ -25,10 +26,18 @@ customProductsRoutes.get('/:productId', function(request,response,next){
     }
   })
   .then((product)=>{
-    response.json(product)
+    response.status(200).json(product)
   })
   .catch(next);
 })
+
+customProductsRoutes.get('/all/locations', function (request, response, next) {
+
+    Product.aggregate('location', 'DISTINCT', { plain: false })
+    .then(arrayOfResults => {
+      response.json(arrayOfResults);
+    });
+  });
 
 customProductsRoutes.post('/', function(request,response,next){
   const dj={
@@ -74,6 +83,17 @@ customProductsRoutes.delete('/:productId',function(request,response,next){
     where:{id:request.params.productId}
   })
   .then(response.sendStatus(200))
+  .catch(next);
+})
+
+customProductsRoutes.get('/search/filter', function(request, response, next){
+  console.log(request.query, "FILTER ROUTE");
+  Product.findAll({
+    where:request.query
+  })
+  .then(products =>{
+    response.json(products)
+  })
   .catch(next);
 })
 

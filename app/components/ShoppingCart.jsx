@@ -27,7 +27,7 @@ class ShoppingCart extends Component {
 
 	}
 
-	componentDidMount(){	
+	componentDidMount(){
 		this.setState({shoppingCart: this.props.shoppingCart.shoppingCart})
 		// axios.get('/api/auth/whoami')
 		// .then(res => this.setState({currentUser: res.auth}))
@@ -76,6 +76,7 @@ class ShoppingCart extends Component {
 
 		<div className="container-fluid"> 
 			<div className="ShoppingCart_div">
+
 			<div className="panel panel-default">
 				  <div className="panel-heading">Shopping Cart</div>
 
@@ -86,12 +87,12 @@ class ShoppingCart extends Component {
 					      <th>Quantity</th>
 					      <th>Price (per unit)</th>
 					      <th>Total</th>
-					      <th />		
-					      <th />			      
+					      <th />
+					      <th />
 					    </tr>
 					  </thead>
 					  <tbody>
-					  
+
 
 					    { this.state.shoppingCart.length &&
 					    	this.state.shoppingCart.map(elem => {
@@ -103,7 +104,7 @@ class ShoppingCart extends Component {
 									      <td> ${this.state.productToCheckForQuanity.newQuantity ? this.state.productToCheckForQuanity.newQuantity * elem.price : (elem.price * elem.quantity && elem.price*elem.quantity)}</td>
 									      <td> <div className="glyphicon glyphicon-remove" onClick={() => this.deleteFromCart(elem.id)}/> </td>
 									      <td> 	<button type="submit" style={{}}className="quantity-update btn btn-primary" onClick={()=>this.handleQuantityUpdate(this.state.productToCheckForQuanity.productId, this.state.productToCheckForQuanity.newQuantity)}>Update quantity</button>
-											</td> 
+											</td>
 									   </tr>
 
 					    			)
@@ -113,7 +114,7 @@ class ShoppingCart extends Component {
 					  </tbody>
 					</table>
 			</div>
-			
+
 			{  this.state.quantityAvailable ? null : <div className="alert alert-danger" role="alert">
 			  		<strong>Oh snap!</strong> You are asking for more inventory than available.  There are {this.state.unitsRemaining} units available of this item
 				</div>
