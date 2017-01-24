@@ -43,6 +43,7 @@ export default connect(
 
   componentDidMount() {
     window.addEventListener('scroll', () => {
+
       if (scroll && (window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
         // console.log("bottom of page")
 

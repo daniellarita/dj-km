@@ -21,21 +21,27 @@ const transport = {
 const transporter = nodemailer.createTransport(transport);
 
 Router.post('/', function(req,res,next){
-console.log(req.body.products[0].artistName)
+
+
+// console.log(req.body.products[0].artistName)
+
+var tempString = '';
+
+         for (let i=0; i<req.body.products.length; i++){
+    
+           tempString += `<div> ${req.body.products[i].artistName} </div>` +
+            `<div> ${req.body.products[i].giveImage} </div>`
+         }
+var introString = '<h1> Thank you for your purchase! </h1> <p> You have the following purchases: </p>'
+
+var emailString = introString + tempString
+
     const mailOptions = {
     	from: 'djkm.team@gmail.com',
     	to: req.body.email,
     	subject: 'DJ KM Order ' + req.body.orderNumber,
     	// text: 'haye',
-    	html: `<h1> Thank you for your purchase! </h1> 
-            <p> You have the following purchases: </p>
-         <script> 
-         for (let i=0; i<req.body.products.length; i++){
-    
-            document.createElement('div').innerHTML(req.body.products[i].artistName)
-            document.createElement('img').setAttribute('src',req.body.products[i].giveImage)
-         }
-         </script> `
+    	html:  emailString
     };
 
 transporter.sendMail(mailOptions, function(error, info){

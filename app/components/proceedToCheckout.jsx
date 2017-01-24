@@ -51,6 +51,8 @@ class Checkout extends Component {
 			order.orderNumber = crypto.randomBytes(5).toString('hex').toUpperCase();
 			this.setState({order: order})
 			axios.post('/api/sendmail', this.state.order)
+			this.setState({goToConfirmation: true})
+			this.props.purchase_func(this.state.order)
 
 		} else{	
 			// console.log(this.state.order)
@@ -67,7 +69,7 @@ class Checkout extends Component {
 			})
 			
 		}
-		
+		// router.push('/confirmation')		
 	}
 
 	emailValidation(event){

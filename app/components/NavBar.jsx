@@ -5,11 +5,12 @@ import axios from 'axios'
 
 const NavBar = (props) =>{
   
-  const loginWithGmail = function(){
+  // const loginWithGmail = function(){
+  //   // console.log('hey')
+  //   axios.post('/api/auth/google-oauth/login')
+  //   .then(data => console.log(data))
 
-    axios.post('/api/auth/google/login')
-
-  }
+  // }
 
   return(
     <div>
@@ -51,7 +52,7 @@ const NavBar = (props) =>{
                   <Link to="/shoppingcart">
                     View Cart
                   </Link>
-                  <div> <a href='#' onClick={()=>loginWithGmail()}> Log in with Gmail </a> </div>
+                  <div> <a href='/api/auth/google/login' > Log in with Gmail </a> </div>
                 </div>
               }
               <div className="g-signin2" data-onsuccess="onSignIn"></div>
