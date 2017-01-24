@@ -1,9 +1,16 @@
 import React from 'react';
 import Login from './Login';
 import { Link } from 'react-router';
-
+import axios from 'axios'
 
 const NavBar = (props) =>{
+  
+  const loginWithGmail = function(){
+
+    axios.post('/api/auth/google/login')
+
+  }
+
   return(
     <div>
       <nav className="navbar navbar-default navbar-fixed-top">
@@ -25,6 +32,7 @@ const NavBar = (props) =>{
 
               { props.user && props.user.email ?
                 <div>
+
                   <li>
                     <Link to="/account">
                     {props.user.name}'s Account
@@ -43,8 +51,10 @@ const NavBar = (props) =>{
                   <Link to="/shoppingcart">
                     View Cart
                   </Link>
+                  <div> <a href='#' onClick={()=>loginWithGmail()}> Log in with Gmail </a> </div>
                 </div>
               }
+              <div className="g-signin2" data-onsuccess="onSignIn"></div>
             </ul>
           </div>
         </div>

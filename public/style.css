@@ -4,6 +4,7 @@
 
 .ShoppingCart_div{
 	margin: 2%;
+	margin-top: 10%;
 }
 
 .glyphicon-remove{
@@ -31,3 +32,8 @@
 	background-color: green;
 	border:none;
 };
+
+.checkout{
+	margin-top:5%;
+	background-color: yellow;
+}
