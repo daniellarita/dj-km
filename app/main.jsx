@@ -12,7 +12,8 @@ import ShoppingCart from './components/ShoppingCart'
 
 import ProductDetailContainer from './containers/ProductDetailContainer.jsx';
 import ProductsHomeContainer from './containers/ProductsHomeContainer.jsx';
-
+import Checkout from './components/proceedToCheckout'
+import Confirmation from './components/confirmation'
 
 render (
   <Provider store={store}>
@@ -23,6 +24,10 @@ render (
         <Route path="/products/:pId" component={ProductDetailContainer} />
         <IndexRedirect to='/products' />
         <Route path='/ShoppingCart' component={ShoppingCart} />
+        <Route path='/checkout' component={Checkout} />
+        <Route path='/confirmation' component={Confirmation} />
+        
+        
       </Route>
     </Router>
   </Provider>,

@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import store from '../store.jsx'
 import Promise from 'bluebird';
 import axios from 'axios';
+import { Link } from 'react-router';
+import Checkout from './proceedToCheckout.jsx'
 
 // this is the component
 // const ShoppingCart = (props) => {
@@ -13,6 +15,7 @@ class ShoppingCart extends Component {
 		super();
 		this.state = {
 			shoppingCart: [],
+			// currentUser: {},
 			productToCheckForQuanity: {productId: 0, newQuantity: 0},
 			quantityAvailable: true,
 			unitsRemaining: 0
@@ -21,12 +24,13 @@ class ShoppingCart extends Component {
 	this.deleteFromCart = this.deleteFromCart.bind(this);
 	this.handleQuantity = this.handleQuantity.bind(this);
 	this.handleQuantityUpdate = this.handleQuantityUpdate.bind(this);
-	this.proceedToOrder = this.proceedToOrder.bind(this);
 
 	}
 
 	componentDidMount(){	
 		this.setState({shoppingCart: this.props.shoppingCart.shoppingCart})
+		// axios.get('/api/auth/whoami')
+		// .then(res => this.setState({currentUser: res.auth}))
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -37,7 +41,6 @@ class ShoppingCart extends Component {
 	 }
 
 	deleteFromCart(idToRemove){
-		console.log(idToRemove)
 		if(this.state.shoppingCart.length){
 			const currentCart = this.state.shoppingCart;
 			const newCart = currentCart.filter(elem => {return elem.id != idToRemove})
@@ -68,17 +71,11 @@ class ShoppingCart extends Component {
 
 	}
 
-	proceedToOrder(){
-		//create and submit to orders table
-		//update quantity on products
-		//move to the checkout page (maybe just create a div below?)
-	}
-
 	render(){
-		console.log(this.props)
 	return(
 
-		<div className="ShoppingCart_div"> 
+		<div className="container-fluid"> 
+			<div className="ShoppingCart_div">
 			<div className="panel panel-default">
 				  <div className="panel-heading">Shopping Cart</div>
 
@@ -122,12 +119,10 @@ class ShoppingCart extends Component {
 				</div>
 			}
 
-			<div className="panel panel-default">
-				 <div className="panel-heading">Address</div>
- 			</div>
-
-  			<button type="button" className="btn btn-primary">Proceed to Checkout</button>
-
+  			<Link to="/checkout" > 
+  				<button type="button" className="btn btn-primary">Proceed to Checkout</button>
+  			</Link>
+  			</div>
 		</div>
 
 	)

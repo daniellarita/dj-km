@@ -52,8 +52,10 @@ OAuth.setupStrategy({
   provider: 'google',
   strategy: require('passport-google-oauth').Strategy,
   config: {
-    consumerKey: env.GOOGLE_CONSUMER_KEY,
-    consumerSecret: env.GOOGLE_CONSUMER_SECRET,
+    // consumerKey: env.GOOGLE_CONSUMER_KEY,
+    // consumerSecret: env.GOOGLE_CONSUMER_SECRET,
+    consumerKey: '444169114220-18uoi6t7bukvh0pk3e4ojck4s4cjhuq7.apps.googleusercontent.com',
+    consumerSecret: 'G06vM16MeGHZnvwAVflx9-UZ',
     callbackURL: `${app.rootUrl}/api/auth/login/google`,
   },
   passport
@@ -96,6 +98,7 @@ passport.deserializeUser(
 )
 
 passport.use(new (require('passport-local').Strategy) (
+  // passport.use(new (require('passport-google-oauth').Strategy) (
   (email, password, done) => {
     debug('will authenticate user(email: "%s")', email)
     User.findOne({where: {email}})
