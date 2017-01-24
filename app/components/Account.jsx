@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { Link } from 'react-router';
 import Promise from 'bluebird';
 
 class Account extends React.Component {
@@ -29,6 +30,7 @@ class Account extends React.Component {
             <h1>{`${user.name}'s Account`}</h1>
             <label>Account Email</label><p>{user.email}</p>
           </div>
+          <Link to="/addProduct">Add a DJ</Link>
           <div className="col-md-4">
             <label>Your Reviews</label>
             { this.state.reviews && this.state.reviews.length>1 && this.state.reviews.map((review)=>{
