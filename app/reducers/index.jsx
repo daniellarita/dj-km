@@ -6,7 +6,8 @@ const rootReducer = combineReducers({
   auth: require('./auth').default,
   searchfilter: require('./searchfilter').default,
   products: require('./productsHome.jsx').default,
-  shoppingCart: ShoppingCart_reducer
+  shoppingCart: ShoppingCart_reducer,
+  newProduct: require('./createProduct.jsx').default
 });
 
 export default rootReducer;

@@ -16,7 +16,7 @@ import ProductsHomeContainer from './containers/ProductsHomeContainer.jsx';
 import Checkout from './components/proceedToCheckout'
 import Confirmation from './components/confirmation'
 import AccountContainer from './containers/AccountContainer.jsx';
-
+import CreateProductContainer from './containers/CreateProductContainer.jsx';
 
 
 render(
@@ -30,9 +30,7 @@ render(
         <Route path='/ShoppingCart' component={ShoppingCart} />
         <Route path='/checkout' component={Checkout} />
         <Route path='/confirmation' component={Confirmation} />
-        
-        
-
+        <Route path='/addProduct' component={CreateProductContainer} />
         <Route path='/account' component={AccountContainer} />
       </Route>
     </Router>
