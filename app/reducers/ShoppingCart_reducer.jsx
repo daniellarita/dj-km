@@ -14,6 +14,11 @@ const addToCart_action = (obj) => ({
 	payload: obj
 })
 
+const purchasedItems = (ord) => ({
+  type: PURCHASE,
+  payload: ord
+})
+
 //defining dispatch action to define value of action-creator (also to be called by component)
 export const deleteFromCart = (arr) => {
   return (dispatch) => {
@@ -22,9 +27,9 @@ export const deleteFromCart = (arr) => {
     
 }
 
-export const purchase = (arr) => {
+export const purchase = (ord) => {
   return (dispatch) => {
-    dispatch(purchasedItems(arr))
+    dispatch(purchasedItems(ord))
   } 
 }
 
@@ -39,42 +44,8 @@ export const addToCart = (obj) => {
 
 //initializing state
 const initialState= {
-  shoppingCart: []
-
-// shoppingCart: [
-// {giveImage: "/dj-default.png",
-// id: 1,
-// artistName: "Big Boi",
-// description: "Fat jams all day",
-// price: 104,
-// image: null,
-// genre: "RAP",
-// location: "NYC",
-// email: "bigboi@money.com",
-// audioSample: null,
-// rating: null,
-// quantity: 1
-
-// },
-
-// {giveImage: "/dj-default.png",
-// id: 2,
-// artistName: "yo",
-// description: "Fat jams all day",
-// price: 104,
-// image: null,
-// genre: "RAP",
-// location: "NYC",
-// email: "bigboi@money.com",
-// audioSample: null,
-// rating: null,
-// quantity: 1
-
-// }
-
-
-// ]
-
+  shoppingCart: [],
+  order: {}
 };
 
 
@@ -90,7 +61,7 @@ export default function (state = initialState, action) {
       break;
 
     case PURCHASE:
-      newState.shoppingCart = action.payload;
+      newState.order = action.payload;
       break;
 
     case ADD_TO_CART:

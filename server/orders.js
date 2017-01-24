@@ -115,11 +115,16 @@ customOrderRoutes.get('/:orderNumber/products', function (request, response, nex
 
 
 customOrderRoutes.post('/', function (request, response, next) {
+  console.log(request.body)
+
+  // const temp = request.body;
+  // if temp
 
   const cartProducts = request.body.products;
   const cartProductIds = [];
   cartProducts.forEach((product) => {
-    cartProductIds.push(product.pId);
+    // cartProductIds.push(product.pId); changing from pid to id
+       cartProductIds.push(product.id);
   });
   let grandTotal = 0;
 
@@ -148,7 +153,8 @@ customOrderRoutes.post('/', function (request, response, next) {
       .then((productsArray) => {
         productsArray.forEach((prod) => {
           cartProducts.forEach((cartPr) => {
-            if(prod.id.toString()===cartPr.pId.toString()) {
+            // if(prod.id.toString()===cartPr.pId.toString()) { changing from pid
+              if(prod.id.toString()===cartPr.id.toString()) { 
               grandTotal += cartPr.quantity*cartPr.price;
               order.addProduct(prod, {
                 quantity: cartPr.quantity,
@@ -167,7 +173,18 @@ customOrderRoutes.post('/', function (request, response, next) {
       return order.save();
   })
   .then((order) => {
-      response.sendStatus(200);
+      // response.sendStatus(200);
+
+      cartProducts.forEach((product) => {
+        
+        Product.findOne({
+          where: {id: product.id}
+        })
+        .then(data => data.updateQuantity(product.id))
+
+      });
+
+      response.json(order)
   })
   .catch(next);
 });
