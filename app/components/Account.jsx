@@ -20,7 +20,7 @@ class Account extends React.Component {
     }
 
     render(){
-      const user = this.props.user;
+      const user=this.props.user;
       console.log("REVIEWS LOC STATE", this.state.reviews)
 
       return(
@@ -31,8 +31,8 @@ class Account extends React.Component {
           </div>
           <div className="col-md-4">
             <label>Your Reviews</label>
-            { this.state.reviews && this.state.reviews.length>1 && this.state.reviews.map((review)=>{
-              return <div>{review.text}</div>
+            { this.state.reviews && this.state.reviews.length>1 && this.state.reviews.map((review, i)=>{
+              return <div key={i}>{review.text}</div>
               })
             }
           </div>
