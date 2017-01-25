@@ -31,10 +31,12 @@ OAuth.V2 = (accessToken, refreshToken, profile, done) =>
       uid: profile.id,
     }})
     .spread(oauth => {
+      
       debug('provider:%s will log in user:{name=%s uid=%s}',
         profile.provider,
         profile.displayName,
         profile.uid)
+      
       oauth.profileJson = profile
       return db.Promise.props({
         oauth,
@@ -44,7 +46,8 @@ OAuth.V2 = (accessToken, refreshToken, profile, done) =>
     })
     .then(({ oauth, user }) => user ||
       User.create({
-        name: profile.displayName,        
+        name: profile.displayName,  
+        email: profile.emails[0].value      
       }).then(user => db.Promise.props({
         user,
         _setOauthUser: oauth.setUser(user)
