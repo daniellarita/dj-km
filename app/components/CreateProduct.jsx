@@ -9,7 +9,7 @@ class CreateProduct extends React.Component{
   render() {
     return(
       <div>
-      <form onSubmit={(event) => this.props.submit(event)}>
+      <form onSubmit={(event) => this.props.handleSubmit(event)}>
 
         <div className="form-group">
           <label>Artist Name</label>
