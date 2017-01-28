@@ -13,9 +13,6 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    // receiveProducts () {
-    //   dispatch(getProducts());
-    // },
     selectProduct (prod) {
       dispatch(setSelected(prod));
     },
