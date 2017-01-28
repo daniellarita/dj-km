@@ -6,7 +6,7 @@ export const GET_LOCATIONS = "GET_LOCATIONS";
 export function setLocations() {
   return {
     type: GET_LOCATIONS,
-    locationsList: ['NYC', 'San Francisco', 'Chicago', 'Miami']
+    locationList: ['NYC', 'San Francisco', 'Chicago', 'Miami']
   };
 }
 
@@ -14,7 +14,7 @@ export default function reducer(state={}, action) {
   const newState = Object.assign({}, state);
   switch(action.type) {
     case GET_LOCATIONS:
-      newState.locationsList = action.locationsList;
+      newState.locationList = action.locationList;
       break;
     default:
       return state;

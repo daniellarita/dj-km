@@ -6,7 +6,10 @@ import CreateProduct from '../components/CreateProduct.jsx';
 import axios from 'axios';
 
 const mapStateToProps = state => {
-  return {};
+  return {
+    genresList: state.genresList,
+    locationList: state.locationList
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -21,6 +24,7 @@ export default connect(
     constructor(){
       super();
       this.state={
+        // genresList: ['ELECTRONIC', 'RAP', 'FUNK', 'HIP-HOP'],
         newProduct:{
           artistName:'',
           description:'',
@@ -31,14 +35,22 @@ export default connect(
           location:'',
           audioSample:'',
           quantity:0
-        },
-        genresList: ['ELECTRONIC', 'RAP', 'FUNK', 'HIP-HOP'],
-
+        }
       }
       this.handleSubmit=this.handleSubmit.bind(this);
       this.handleChange=this.handleChange.bind(this);
     }
 
+    componentDidMount(){
+      let temp=this.state.newProduct;
+      temp.genre=this.props.genresList.genresList[0];
+      temp.location=this.props.locationList.locationList[0];
+
+      this.setState({
+        newProduct:temp
+      })
+
+    }
     // componentDidMount() {
     //   axios.get('/api/products')
     //   .then((response) => {
@@ -106,6 +118,7 @@ export default connect(
       }
 
       if (e.target.name==="genre") {
+        console.log(e.target.value)
         temp.genre=e.target.value;
         this.setState({
           newProduct: temp

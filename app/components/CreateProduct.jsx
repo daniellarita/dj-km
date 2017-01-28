@@ -2,11 +2,8 @@ import React from 'react';
 import axios from 'axios';
 
 class CreateProduct extends React.Component{
-  constructor(){
-    super();
-  }
-
   render() {
+    this.props.locationList.locationList
     return(
       <div>
       <form onSubmit={(event) => this.props.handleSubmit(event)}>
@@ -62,25 +59,20 @@ class CreateProduct extends React.Component{
         </div>
 
         <div className="form-group">
-          <label>Genre</label>
-          <input
-            type="text"
-            className="form-control"
-            name="genre"
-            value={this.props.newProduct.genre}
-            onChange={(event) => this.props.handleChange(event)}
-          />
-        </div>
-
-        <div className="form-group">
           <label>Location</label>
-          <input
+          <select
             type="text"
             className="form-control"
             name="location"
             value={this.props.newProduct.location}
             onChange={(event) => this.props.handleChange(event)}
-          />
+          >
+            {
+              this.props.locationList.locationList.map((location,i)=>{
+                return <option key={i}>{location}</option>
+              })
+            }
+          </select>
         </div>
 
         <div className="form-group">
@@ -92,6 +84,23 @@ class CreateProduct extends React.Component{
             value={this.props.newProduct.audio}
             onChange={(event) => this.props.handleChange(event)}
           />
+        </div>
+
+        <div className="form-group">
+          <label>Genre</label>
+          <select
+            type="text"
+            className="form-control"
+            name="genre"
+            value={this.props.newProduct.genre}
+            onChange={(event) => this.props.handleChange(event)}
+          >
+            {
+              this.props.genresList.genresList.map((genre,i)=>{
+                return <option key={i}>{genre}</option>
+              })
+            }
+          </select>
         </div>
 
         <div className="form-group">
