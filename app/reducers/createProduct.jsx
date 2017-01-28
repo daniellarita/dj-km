@@ -9,8 +9,10 @@ export function addProductOnBrowser(newProduct) {
   };
 }
 
-export function postProduct() {
+export function postProduct(newProduct) {
+
   return function(dispatch, getState) {
+    dispatch(addProductOnBrowser());
     console.log(getState());
     // axios.post('/api/products', {})
     // .then((response) => {
