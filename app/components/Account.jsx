@@ -35,7 +35,7 @@ class Account extends React.Component {
           <Link to="/addProduct">Add a DJ</Link>
           <div className="col-md-4">
             <label>Your Reviews</label>
-            { this.state.reviews && this.state.reviews.length>1 && this.state.reviews.map((review, i)=>{
+            { this.state.reviews.map((review, i)=>{
               return <div key={i}>{review.text}</div>
               })
             }

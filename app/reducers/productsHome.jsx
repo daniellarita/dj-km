@@ -36,20 +36,6 @@ export const selectProduct = (product) => ({
 });
 
 export function getProducts() {
-  // console.log(store.getState());
-  // const searchFilter=store.getState().searchfilter;
-  // let queryString='?';
-
-  // for (var key in searchFilter){
-  //   console.log("in for loop")
-  //   if (searchFilter[key]!==-1){
-  //     queryString+=key+'='+searchFilter[key];
-  //     console.log(queryString);
-  //   }
-  // }
-
-  // console.log("QUERY STRING",queryString);
-
   return (dispatch) => {
     return axios.get("/api/products/")
     .then((results) => {
