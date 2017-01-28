@@ -56,7 +56,9 @@ customProductsRoutes.post('/', function(request,response,next){
   Product.findOrCreate({
     where:dj
   })
-  .then(dj=>response.json(dj))
+  .then(dj=> {
+    response.json(dj);
+   })
   .catch(next);
 })
 

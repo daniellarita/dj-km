@@ -1,21 +1,16 @@
 import React, { Component } from 'react';
+import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 import CreateProduct from '../components/CreateProduct.jsx';
-import {postProduct} from '../reducers/createProduct.jsx';
+// import {postProduct} from '../reducers/createProduct.jsx';
+import axios from 'axios';
 
 const mapStateToProps = state => {
-  return {
-
-  };
+  return {};
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    postProduct: function() {
-      dispatch(postProduct(newProduct));
-    }
-
-  };
+  return {};
 };
 
 export default connect(
@@ -34,16 +29,42 @@ export default connect(
           image:'',
           genre:'',
           location:'',
-          audio:'',
+          audioSample:'',
           quantity:0
-        }
+        },
+        genresList: ['ELECTRONIC', 'RAP', 'FUNK', 'HIP-HOP'],
+
       }
       this.handleSubmit=this.handleSubmit.bind(this);
       this.handleChange=this.handleChange.bind(this);
     }
 
-    handleSubmit(e){
+    // componentDidMount() {
+    //   axios.get('/api/products')
+    //   .then((response) => {
+    //
+    //       console.log(response.data);
+    //       const genres = this.state.genresList;
+    //
+    //       response.data.forEach((dj) => {
+    //         genres.indexOf(dj.genre)!==-1 ? null : genres.push(dj.genre);
+    //       });
+    //
+    //       this.setState({
+    //         genresList: genres
+    //       });
+    //
+    //       console.log(this.state.genresList);
+    //   });
+    // }
+
+    handleSubmit(e) {
       e.preventDefault();
+      axios.post('/api/products', this.state.newProduct)
+      .then((response) => {
+        // console.log(response);
+        browserHistory.push("/");
+      });
     }
 
     handleChange(e){
@@ -99,7 +120,7 @@ export default connect(
       }
 
       if (e.target.name==="audio") {
-        temp.audio=e.target.value;
+        temp.audioSample=e.target.value;
         this.setState({
           newProduct: temp
         })
@@ -118,11 +139,10 @@ export default connect(
         <CreateProduct
           {...this.state}
           {...this.props}
-          submit={this.handleSubmit}
+          handleSubmit={this.handleSubmit}
           handleChange={this.handleChange}
         />
       );
     }
   }
 )
-

@@ -29,6 +29,7 @@ const Product = db.define('products', {
   },
 
   genre:{
+    // Make sure you update the list front end in CreateProductContainer.jsx
     type:Sequelize.ENUM('ELECTRONIC', 'RAP', 'FUNK', 'HIP-HOP'),
     validate:{
       notEmpty:true
@@ -37,6 +38,7 @@ const Product = db.define('products', {
   },
 
   location:{
+    // Make sure you update the list front end in CreateProductContainer.jsx
     type:Sequelize.ENUM('NYC', 'San Francisco', 'Chicago', 'Miami'),
     validate: {
       notEmpty:true
