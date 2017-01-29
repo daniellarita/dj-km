@@ -72,6 +72,7 @@ export default connect(
 
     handleSubmit(e) {
       e.preventDefault();
+      console.log(this.state.newProduct);
       axios.post('/api/products', this.state.newProduct)
       .then((response) => {
         // console.log(response);
