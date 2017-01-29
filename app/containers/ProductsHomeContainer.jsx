@@ -13,9 +13,6 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    // receiveProducts () {
-    //   dispatch(getProducts());
-    // },
     selectProduct (prod) {
       dispatch(setSelected(prod));
     },
@@ -25,6 +22,9 @@ function mapDispatchToProps (dispatch) {
   };
 };
 
+let scroll = true;
+let numberofProductsDisplay = 9;
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps
@@ -33,15 +33,17 @@ export default connect(
   constructor (props) {
     super(props);
     this.state = {
-      currIndex: 3,
-      scroll: true
+      currIndex: numberofProductsDisplay
     };
     this.loadMore = this.loadMore.bind(this);
   }
 
   componentDidMount() {
     window.addEventListener('scroll', () => {
-      if ((window.innerHeight + window.scrollY) === document.body.offsetHeight + 95 && this.state.scroll) {
+
+      if (scroll && (window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+        // console.log("bottom of page")
+
         this.infiniteScroll();
       }
       // console.log("hey", document.body.scrollTop, window.innerHeight+window.scrollY, document.body.offsetHeight);
@@ -49,9 +51,10 @@ export default connect(
   }
 
   infiniteScroll() {
-    let newIndex = this.state.currIndex + 3;
-    this.setState({currIndex: newIndex, scroll: false});
-    setTimeout(() => { this.setState({scroll: true}) }, 500);
+    scroll = false;
+    let newIndex = this.state.currIndex + numberofProductsDisplay;
+    this.setState({currIndex: newIndex});
+    setTimeout(() => { scroll = true }, 1000);
   }
 
   loadMore(event) {
@@ -66,6 +69,7 @@ export default connect(
         {...this.state}
         {...this.props}
         loadMore={this.loadMore}
+        infiniteScroll={this.infiniteScroll}
       />
     );
   }

@@ -58,7 +58,7 @@ class SearchFilter extends Component {
 
 
 	render(){
-    const options = <div className="col-sm-2">
+    const options = <div className="">
                           <select onChange={(event) => this.setState({location: event.target.value})}>
 													<option value={""}> {"Select Location"} </option>
                             {this.state.options.length && this.state.options.map((location, index) => {
@@ -75,41 +75,54 @@ class SearchFilter extends Component {
 
 	return(
     <div className="container">
+			<div className="col-md-3">
+				<label>DJ Name</label>
+				<input onChange={(event) => this.setState({name: event.target.value})} placeholder="Enter DJ Name" type="text" />
+			</div>
 
-          <div className="col-sm-2">
-            <input onChange={(event) => this.setState({name: event.target.value})} placeholder="Enter DJ Name" type="text" />
-          </div>
+			<div className="col-md-3">
+				<div className="col-md-12">
+					{
+						this.state.options.length
+						?
+						options
+						:
+						null
+					}
+				</div>
 
-        <div className=" col-sm-4 form-check form-check-inline">
-            <input className="form-check-input" type="checkbox" onChange={(event) => this.setState({country: event.target.checked})} value="Country" /> Country
-            <input className="form-check-input" type="checkbox" onChange={(event) => this.setState({rap: event.target.checked})} value="Rap" /> Rap
-            <input className="form-check-input" type="checkbox" onChange={(event) => this.setState({techno: event.target.checked})} value="Techno" /> Techno
-        </div>
+				<div className="col-md-12 form-check form-check-inline">
+					<select onChange={(event) => this.setState({rating: event.target.value})}>
+						<option value={""}> {"Select Rating"} </option>
+						{ arrOfRatings }
+					</select>
+				</div>
+			</div>
 
-        {
-          this.state.options.length
-          ? options
-          : null
-        }
 
-        <div className="col-sm-2 form-check form-check-inline">
-						<select onChange={(event) => this.setState({rating: event.target.value})}>
-							<option value={""}> {"Select Rating"} </option>
-							{ arrOfRatings }
-						</select>
-        </div>
 
-        <div className="col-sm-4 form-group row">
-            <input onChange={(event) => this.setState({min: parseInt(event.target.value)})} type="text" /> to
-            <input onChange={(event) => this.setState({max: parseInt(event.target.value)})} type="text" />
-        </div>
+			<div className="col-md-3">
+				<div className="col-md-12 form-check">
+					<input className="form-check-input" type="checkbox" onChange={(event) => this.setState({country: event.target.checked})} value="Country" />
+					<label>Country</label>
+					<br></br>
+					<input className="form-check-input" type="checkbox" onChange={(event) => this.setState({rap: event.target.checked})} value="Rap" />
+					<label>Rap</label>
+					<br></br>
+					<input className="form-check-input" type="checkbox" onChange={(event) => this.setState({techno: event.target.checked})} value="Techno" />
+					<label>Techno</label>
+				</div>
+			</div>
 
-        <div className="form-group row">
-          <div className="offset-sm-2 col-sm-10">
-            <button onClick = {this.handleSubmit} className="btn btn-primary"> ♫ Find my DJ ♫ </button>
-          </div>
-        </div>
+			<div className="col-md-3">
+				<label className="col-md-12">Price Range</label>
+				<input className="col-md-4" onChange={(event) => this.setState({min: parseInt(event.target.value)})} type="text" />
+				<input className="col-md-4" onChange={(event) => this.setState({max: parseInt(event.target.value)})} type="text" />
+			</div>
 
+			<div className="col-md-12">
+				<button onClick = {this.handleSubmit} className="btn btn-primary"> ♫ Find my DJ ♫ </button>
+			</div>
 
     </div>
 
