@@ -25,7 +25,7 @@ Router.post('/', function(req,res,next){
 
 // console.log(req.body.products[0].artistName)
 
-var tempString = '';
+var productString = '';
 
          for (let i=0; i<req.body.products.length; i++){
     
@@ -34,7 +34,7 @@ var tempString = '';
          }
 var introString = '<h1> Thank you for your purchase! </h1> <p> You have the following purchases: </p>'
 
-var emailString = introString + tempString
+var emailString = introString + productString
 
     const mailOptions = {
     	from: 'djkm.team@gmail.com',

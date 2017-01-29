@@ -25,6 +25,7 @@ const OAuth = db.define('oauths', {
 })
 
 OAuth.V2 = (accessToken, refreshToken, profile, done) =>
+  // console.log('hello i am here')
   OAuth.findOrCreate({
     where: {
       provider: profile.provider,
