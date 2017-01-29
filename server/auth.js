@@ -41,7 +41,7 @@ OAuth.setupStrategy({
   config: {
     clientID: env.FACEBOOK_CLIENT_ID,
     clientSecret: env.FACEBOOK_CLIENT_SECRET,
-    callbackURL: `${app.baseUrl}/api/auth/login/facebook`,
+    callbackURL: `${app.baseUrl}/api/auth/facebook/login`,
   },
   passport
 })
@@ -82,10 +82,10 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser(
   (id, done) => {
-    debug('will deserialize user.id=%d', id)
+    // debug('will deserialize user.id=%d', id)
     User.findById(id)
       .then(user => {
-        debug('deserialize did ok user.id=%d', user.id)
+        // debug('deserialize did ok user.id=%d', user.id)
         done(null, user)
       })
       .catch(err => {
