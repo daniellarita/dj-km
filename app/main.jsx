@@ -18,7 +18,7 @@ import Confirmation from './components/confirmation'
 import AccountContainer from './containers/AccountContainer.jsx';
 
 import CreateProductContainer from './containers/CreateProductContainer.jsx';
-
+import CreateAccountContainer from './containers/CreateAccountContainer.jsx';
 
 render(
   <Provider store={store}>
@@ -34,6 +34,7 @@ render(
 
         <Route path='/addProduct' component={CreateProductContainer} />
         <Route path='/account' component={AccountContainer} />
+        <Route path='/createaccount' component={CreateAccountContainer} />
       </Route>
     </Router>
   </Provider>,

@@ -36,7 +36,7 @@ const NavBar = (props) =>{
 
                   <li>
                     <Link to="/account">
-                    {props.user.name}'s Account
+                    {`${props.user.name}'s`} Account
                     </Link>
                   </li>
                   <li>
@@ -52,10 +52,15 @@ const NavBar = (props) =>{
                   <Link to="/shoppingcart" className="col-md-3">
                     View Cart
                   </Link>
-                  <div className="col-md-5"> <a href='/api/auth/google/login' > Log in with Gmail </a> </div>
+                  <div className="col-md-5">
+                    <a href='/api/auth/google/login'>
+                      Log in with Gmail
+                    </a>
+                  </div>
+                  <Link to="/createaccount" className="col-md-3">
+                    Create Account
+                  </Link>
                   <div className="col-md-5"> <a href='/api/auth/facebook/login' > Log in with Facebook </a> </div>
-
-
                 </div>
               }
               <div className="g-signin2" data-onsuccess="onSignIn"></div>

@@ -18,17 +18,17 @@ class ProductDetail extends React.Component{
     this.setState({updatedProduct: this.props.selectedProduct});
   }
 
-updateQuantity(event){
-  event.preventDefault();
-  const temp = this.state.updatedProduct;
-    temp.quantity = event.target.value;
-    this.setState({updatedProduct: temp})
-}
+  updateQuantity(event){
+    event.preventDefault();
+    const temp = this.state.updatedProduct;
+      temp.quantity = event.target.value;
+      this.setState({updatedProduct: temp})
+  }
 
-addToCart(event,obj){
-  event.preventDefault();
-  this.props.addToCart_func(obj)
-}
+  addToCart(event,obj){
+    event.preventDefault();
+    this.props.addToCart_func(obj)
+  }
 
 
   getQuantityArray(){
