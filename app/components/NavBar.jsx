@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 import axios from 'axios'
 
 const NavBar = (props) =>{
-  
+
   // const loginWithGmail = function(){
   //   // console.log('hey')
   //   axios.post('/api/auth/google-oauth/login')
@@ -49,10 +49,10 @@ const NavBar = (props) =>{
                 :
                 <div>
                   <Login />
-                  <Link to="/shoppingcart">
+                  <Link to="/shoppingcart" className="col-md-3">
                     View Cart
                   </Link>
-                  <div> <a href='/api/auth/google/login' > Log in with Gmail </a> </div>
+                  <div className="col-md-5"> <a href='/api/auth/google/login' > Log in with Gmail </a> </div>
                 </div>
               }
               <div className="g-signin2" data-onsuccess="onSignIn"></div>
