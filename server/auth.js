@@ -9,26 +9,26 @@ const auth = require('express').Router()
 
 /*************************
  * Auth strategies
- * 
+ *
  * The OAuth model knows how to configure Passport middleware.
  * To enable an auth strategy, ensure that the appropriate
  * environment variables are set.
- * 
+ *
  * You can do it on the command line:
- * 
+ *
  *   FACEBOOK_CLIENT_ID=abcd FACEBOOK_CLIENT_SECRET=1234 npm start
- * 
+ *
  * Or, better, you can create a ~/.$your_app_name.env.json file in
  * your home directory, and set them in there:
- * 
+ *
  * {
  *   FACEBOOK_CLIENT_ID: 'abcd',
  *   FACEBOOK_CLIENT_SECRET: '1234',
  * }
- * 
+ *
  * Concentrating your secrets this way will make it less likely that you
  * accidentally push them to Github, for example.
- * 
+ *
  * When you deploy to production, you'll need to set up these environment
  * variables with your hosting provider.
  **/
@@ -108,11 +108,11 @@ passport.use(new (require('passport-local').Strategy) (
         return user.authenticate(password)
           .then(ok => {
             if (!ok) {
-              debug('authenticate user(email: "%s") did fail: bad password')              
+              debug('authenticate user(email: "%s") did fail: bad password')
               return done(null, false, { message: 'Login incorrect' })
             }
             debug('authenticate user(email: "%s") did ok: user.id=%d', user.id)
-            done(null, user)              
+            done(null, user)
           })
       })
       .catch(done)
@@ -123,11 +123,15 @@ auth.get('/whoami', (req, res) => res.send(req.user))
 
 auth.get('/:strategy/login', (req, res, next) =>
   passport.authenticate(req.params.strategy, {
-    scope: 'email', 
+    scope: 'email',
     successRedirect: '/'
   })(req, res, next)
+)
 
-
+auth.post('/:strategy/login', (req, res, next) =>
+  passport.authenticate(req.params.strategy, {
+    successRedirect: '/'
+  })(req, res, next)
 )
 
 auth.post('/logout', (req, res, next) => {
@@ -136,4 +140,3 @@ auth.post('/logout', (req, res, next) => {
 })
 
 module.exports = auth
-

@@ -16,13 +16,25 @@ customUserRoutes.get('/', function (request, response, next) {
 
 customUserRoutes.post('/', function (request, response, next) {
     const newUserToCreate = {
+        name: request.body.name,
         email: request.body.email,
         password: request.body.password
     }
-   User.create(newUserToCreate)
-     .then((user) => {
-       response.sendStatus(201);
-     }).catch(next);
+   User.findOrCreate({
+     where: {
+       email: request.body.email
+     }
+   })
+   .spread((user, created) => {
+     user.name=request.body.name;
+     user.password=request.body.password;
+     return user.save();
+    })
+    .then(user=>{
+      console.log(user);
+      response.json(user);
+    })
+    .catch(next);
 });
 
 customUserRoutes.delete('/:userId', function (request, response, next) {

@@ -32,7 +32,7 @@ class Account extends React.Component {
             <label>Account Email</label><p>{user.email}</p>
           </div>
 
-          <Link to="/addProduct">Add a DJ</Link>
+          <Link to="/addProduct">List a DJ</Link>
           <div className="col-md-4">
             <label>Your Reviews</label>
             { this.state.reviews.map((review, i)=>{
