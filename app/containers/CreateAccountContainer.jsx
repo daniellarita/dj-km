@@ -3,6 +3,7 @@ import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 import CreateAccount from '../components/CreateAccount.jsx';
 import axios from 'axios';
+
 const mapStateToProps = state => {
   return {};
 };

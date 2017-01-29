@@ -12,37 +12,65 @@ class Account extends React.Component {
       }
     }
     componentDidMount(){
-      let userId=this.props.user.id;
-      axios.get(`/api/reviews/users/${userId}`)
+      const userId= this.props.user && this.props.user.id;
+      if (userId){
+        axios.get(`/api/reviews/users/${userId}`)
         .then(reviews => reviews.data)
         .then(reviews => {
           this.setState({reviews: reviews})
-          })
+        })
+      }
     }
 
     render(){
-
       const user=this.props.user;
-      console.log("REVIEWS LOC STATE", this.state.reviews)
 
       return(
-        <div>
-          <div className="col-md-8">
-            <h1>{`${user.name}'s Account`}</h1>
-            <label>Account Email</label><p>{user.email}</p>
-          </div>
+        <div>{
+            !user
+            ? <h1>Loading...</h1>
+            :
+              <div>
+                  <div className="col-md-8">
+                      <h1>{`${user.name}'s Account`}</h1>
+                      <label>Account Email</label><p>{user.email}</p>
+                  </div>
+                  <Link to="/addProduct">List a DJ</Link>
 
-          <Link to="/addProduct">List a DJ</Link>
-          <div className="col-md-4">
-            <label>Your Reviews</label>
-            { this.state.reviews.map((review, i)=>{
-              return <div key={i}>{review.text}</div>
-              })
-            }
-          </div>
-        </div>
+                  <div className="col-md-4">
+                    <label>Your Reviews</label>
+                    { this.state.reviews.map((review, i)=>{
+                      return <div key={i}>{review.text}</div>
+                      })
+                    }
+                  </div>
+
+                </div>
+          }</div>
       );
     }
-}
+  }
+
+
+  //       return(
+  //         <div>
+  //           <div className="col-md-8">
+  //             <h1>{`${user.name}'s Account`}</h1>
+  //             <label>Account Email</label><p>{user.email}</p>
+  //           </div>
+  //
+  //           <Link to="/addProduct">List a DJ</Link>
+  //           <div className="col-md-4">
+  //             <label>Your Reviews</label>
+  //             { this.state.reviews.map((review, i)=>{
+  //               return <div key={i}>{review.text}</div>
+  //               })
+  //             }
+  //           </div>
+  //         </div>
+  //       );
+  //   }
+  // }
+
 
 export default Account;
