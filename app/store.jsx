@@ -10,10 +10,10 @@ import { setLocations } from './reducers/locationList';
 
 const store = createStore(rootReducer, applyMiddleware(createLogger(), thunkMiddleware));
 
+store.dispatch(whoami());
 export default store;
 
 // Set the auth info at start
-store.dispatch(whoami());
 store.dispatch(getProducts());
 store.dispatch(setGenres());
 store.dispatch(setLocations());

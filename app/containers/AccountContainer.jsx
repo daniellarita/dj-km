@@ -9,12 +9,20 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-
-  };
+  return {};
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Account);
+)(
+  // class extends React.Component{
+  //   constructor(){
+  //     super();
+  //     this.state={
+  //
+  //     }
+  //   }
+  // }
+  Account
+);
