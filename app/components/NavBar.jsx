@@ -53,6 +53,9 @@ const NavBar = (props) =>{
                     View Cart
                   </Link>
                   <div className="col-md-5"> <a href='/api/auth/google/login' > Log in with Gmail </a> </div>
+                  <div className="col-md-5"> <a href='/api/auth/facebook/login' > Log in with Facebook </a> </div>
+
+
                 </div>
               }
               <div className="g-signin2" data-onsuccess="onSignIn"></div>
