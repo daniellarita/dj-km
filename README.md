@@ -5,10 +5,13 @@ Hire a DJ! Team DJKM of 1609F cohort built this DJ marketplace platform, as part
 
 ## Team Members
 
-Danni Baxter
-Joshua Goldmeier
-Kaushik Nagaraj
-Michael Kaplun
+**D**anni Baxter
+
+**J**oshua Goldmeier
+
+**K**aushik Nagaraj
+
+**M**ichael Kaplun
 
 ## Features Implemented
 
