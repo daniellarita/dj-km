@@ -29,10 +29,9 @@ class ProductsHome extends React.Component {
     return(
       <div>
         <h1>Welcome to DJKM!</h1>
+        <strong>Hire a DJ</strong>
         <div className="well well-sm">
-          <strong>Hire a DJ
-            <SearchFilter />
-          </strong>
+          <SearchFilter />
         </div>
         <div className="row">
         {
