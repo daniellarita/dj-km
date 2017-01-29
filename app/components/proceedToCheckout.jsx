@@ -47,16 +47,19 @@ class Checkout extends Component {
 		const order = this.state.order;
 		order.email = emailToPass;
 
-		if(!this.state.currentuser){
-			order.orderNumber = crypto.randomBytes(5).toString('hex').toUpperCase();
-			this.setState({order: order})
-			axios.post('/api/sendmail', this.state.order)
-			this.setState({goToConfirmation: true})
-			this.props.purchase_func(this.state.order)
 
-		} else{	
-			// console.log(this.state.order)
-			axios.post('/api/orders', this.state.order)
+		function getRandomIntInclusive(min, max) {
+			  min = Math.ceil(min);
+			  max = Math.floor(max);
+			  return Math.floor(Math.random() * (max - min + 1)) + min;
+		}
+
+
+		if(!this.state.currentuser){
+			order.user_id = getRandomIntInclusive(1,1000000)
+		} 
+		
+		axios.post('/api/orders', this.state.order)
 			.then((res) => {
 				if(res === 'error'){this.setState({error: true})}
 					else{
@@ -66,9 +69,31 @@ class Checkout extends Component {
 				this.props.purchase_func(this.state.order)
 
 			}
-			})
+		})
 			
-		}
+		// if(!this.state.currentuser){
+		// 	order.orderNumber = crypto.randomBytes(5).toString('hex').toUpperCase();
+		// 	order.user_id = getRandomIntInclusive(1,1000000)
+		// 	this.setState({order: order})
+		// 	axios.post('/api/sendmail', this.state.order)
+		// 	this.setState({goToConfirmation: true})
+		// 	this.props.purchase_func(this.state.order)
+
+		// } else{	
+		// 	// console.log(this.state.order)
+		// 	axios.post('/api/orders', this.state.order)
+		// 	.then((res) => {
+		// 		if(res === 'error'){this.setState({error: true})}
+		// 			else{
+		// 		order.orderNumber = res.data.orderNumber;
+		// 		this.setState({order:order})
+		// 		this.setState({goToConfirmation: true})
+		// 		this.props.purchase_func(this.state.order)
+
+		// 	}
+		// 	})
+			
+		// }
 		// router.push('/confirmation')		
 	}
 
