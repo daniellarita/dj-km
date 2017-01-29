@@ -29,7 +29,7 @@ class ProductsHome extends React.Component {
     return(
       <div>
         <h1>Welcome to DJKM!</h1>
-        <strong>Hire a DJ</strong>
+        <strong><p>Hire a DJ (or <a href="/addProduct">Become a DJ</a>)</p></strong>
         <div className="well well-sm">
           <SearchFilter />
         </div>
@@ -53,7 +53,7 @@ class ProductsHome extends React.Component {
                         onClick={()=>this.props.selectProduct(curr)}
                         to={`/products/${curr.id}`}
                         >
-                        <img src={curr.image} />
+                        <img src={curr.image==='' ? '/default.png' : curr.image} />
                       </Link>
 
                       <div className="caption">
