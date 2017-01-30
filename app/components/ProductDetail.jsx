@@ -7,11 +7,8 @@ class ProductDetail extends React.Component{
     this.state = ({
       updatedProduct: {}
     })
-
-
-        this.addToCart = this.addToCart.bind(this);
-        this.updateQuantity = this.updateQuantity.bind(this);
-
+    this.addToCart = this.addToCart.bind(this);
+    this.updateQuantity = this.updateQuantity.bind(this);
   }
 
   componentDidMount(){
@@ -32,7 +29,7 @@ class ProductDetail extends React.Component{
 
 
   getQuantityArray(){
-    let q=this.props.selectedProduct.quantity;
+    let q=this.props.selectedProduct.quantity || this.props.reviewProduct.quantity;
     var qArray=[];
     for (let i=1;i<=q;i++){
       qArray.push(i)
@@ -41,6 +38,7 @@ class ProductDetail extends React.Component{
   }
 
   render(){
+    console.log(this.props)
     let quantity=this.getQuantityArray();
 
     let quantityRender;
@@ -56,18 +54,18 @@ class ProductDetail extends React.Component{
     return(
       <div>
         <div className="col-md-8">
-          <h1>{this.props.selectedProduct.artistName}</h1>
-          <p>{this.props.selectedProduct.description}</p>
-          <img src={this.props.selectedProduct.giveImage}></img>
+          <h1>{this.props.selectedProduct.artistName || this.props.reviewProduct.artistName}</h1>
+          <p>{this.props.selectedProduct.description || this.props.reviewProduct.description}</p>
+          <img src={this.props.selectedProduct.giveImage || this.props.reviewProduct.giveImage}></img>
           <div>Audio Sample Placeholder</div>
         </div>
         <div className="col-md-4">
           <h4>Price</h4>
-          <p>{`$${this.props.selectedProduct.price}`}</p>
+          <p>{`$${this.props.selectedProduct.price}` || `$${this.props.reviewProduct.price}`}</p>
           <h4>Genre</h4>
-          <p>{this.props.selectedProduct.genre}</p>
+          <p>{this.props.selectedProduct.genre || this.props.reviewProduct.genre}</p>
           <h4>Location</h4>
-          <p>{this.props.selectedProduct.location}</p>
+          <p>{this.props.selectedProduct.location || this.props.reviewProduct.location}</p>
           <h4>Quantity</h4>
           <select onChange={(event)=>this.updateQuantity(event)}>
             { quantityRender }

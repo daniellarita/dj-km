@@ -4,7 +4,7 @@ const faker = require('faker');
 const db = require('APP/db')
 
 const seedUsers = () => db.Promise.map([
- {name: 'so many', admin: false, email: 'god@example.com', password: '1234'},
+ {name: 'Alec Baldwin', admin: false, email: 'god@example.com', password: '1234'},
  {name: 'Barack Obama', admin: true, email: 'barack@example.gov', password: '1234'},
 ], user => db.model('users').create(user));
 
@@ -44,8 +44,12 @@ const seedProducts = () => db.Promise.map(fakeProducts, product => db.model('pro
 // ], product => db.model('products').create(product));
 
 const seedReviews = () => db.Promise.map([
-  {text: 'This movie brought me', rating: '5', product_id: '1', user_id: '1'},
-  {text: 'and also good for!', rating: '1', product_id: '1', user_id: '1'}
+  {text: 'This DJ had great jams!', rating: '5', product_id: '1', user_id: '1'},
+  {text: 'He was really rude!', rating: '1', product_id: '2', user_id: '1'},
+  {text: 'Amazing vibes all night!', rating: '5', product_id: '3', user_id: '1'},
+  {text: 'He was so polite and professional.', rating: '4', product_id: '1', user_id: '2'},
+  {text: 'Great for kids.', rating: '3', product_id: '5', user_id: '2'},
+  {text: 'Not the best.', rating: '1', product_id: '6', user_id: '2'}
 ], review => db.model('reviews').create(review));
 
 

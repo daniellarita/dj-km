@@ -4,24 +4,18 @@ import { Link } from 'react-router';
 import SearchFilter from './SearchFilter';
 
 class ProductsHome extends React.Component {
-
   constructor(){
     super();
-
     this.addToCart = this.addToCart.bind(this);
-
   }
-
-
 
   componentDidMount() {
   }
 
- addToCart(event,obj){
-  event.preventDefault();
-  this.props.addToCart_func(obj)
-}
-
+   addToCart(event,obj){
+    event.preventDefault();
+    this.props.addToCart_func(obj)
+  }
 
   render() {
     let prod = this.props.products;

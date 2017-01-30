@@ -8,7 +8,8 @@ const rootReducer = combineReducers({
   products: require('./productsHome.jsx').default,
   shoppingCart: ShoppingCart_reducer,
   genresList: require('./genresList.jsx').default,
-  locationList: require('./locationList.jsx').default
+  locationList: require('./locationList.jsx').default,
+  review: require('./reviews.jsx').default,
 });
 
 export default rootReducer;
