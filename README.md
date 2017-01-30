@@ -16,7 +16,10 @@ Hire a DJ! Team DJKM of 1609F cohort built this DJ marketplace platform, as part
 ## Features Implemented
 
 1. Shopping Cart
-* Bullet 1
 2. Product Listing Page
 3. Product Detail Page
+4. Account Page
+5. Create Account
+6. Google, Facebook, regular Login
+7. Search / Filtering
 
