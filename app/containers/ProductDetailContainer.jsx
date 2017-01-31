@@ -5,7 +5,8 @@ import{addToCart} from '../reducers/ShoppingCart_reducer.jsx'
 
 const mapStateToProps = state => {
   return {
-      selectedProduct: state.products.selected
+      selectedProduct: state.products.selected,
+      reviewProduct:state.review.selectedProduct
   };
 };
 

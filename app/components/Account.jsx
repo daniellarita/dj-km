@@ -13,17 +13,18 @@ class Account extends React.Component {
     }
     componentDidMount(){
       const userId= this.props.user && this.props.user.id;
-      if (userId){
+      // if (userId){
         axios.get(`/api/reviews/users/${userId}`)
         .then(reviews => reviews.data)
         .then(reviews => {
           this.setState({reviews: reviews})
         })
-      }
+      // }
     }
 
     render(){
       const user=this.props.user;
+      console.log(this.state.reviews)
 
       return(
         <div>{
@@ -34,17 +35,24 @@ class Account extends React.Component {
                   <div className="col-md-8">
                       <h1>{`${user.name}'s Account`}</h1>
                       <label>Account Email</label><p>{user.email}</p>
+                      <Link to="/addProduct">List a DJ</Link>
                   </div>
-                  <Link to="/addProduct">List a DJ</Link>
-
                   <div className="col-md-4">
                     <label>Your Reviews</label>
                     { this.state.reviews.map((review, i)=>{
-                      return <div key={i}>{review.text}</div>
+                      return (
+                        <div>
+                          <Link to={`/products/${review.product_id}`}
+                            key={i}
+                            onClick={()=>this.props.getProduct(review.product_id)}
+                            >
+                              {review.text}
+                          </Link>
+                        </div>
+                        );
                       })
                     }
                   </div>
-
                 </div>
           }</div>
       );

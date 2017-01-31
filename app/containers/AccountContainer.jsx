@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Account from '../components/Account';
+import { getProduct } from '../reducers/reviews.jsx';
 
 const mapStateToProps = state => {
   return {
@@ -9,7 +10,11 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    getProduct (prodId) {
+      dispatch(getProduct(prodId));
+    }
+  };
 };
 
 export default connect(
