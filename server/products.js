@@ -90,14 +90,50 @@ customProductsRoutes.delete('/:productId',function(request,response,next){
 
 customProductsRoutes.get('/search/filter', function(request, response, next){
   console.log(request.query, "FILTER ROUTE");
+  var filterInfo = createTheWhereObject(request.query)
+  console.log(filterInfo, "FILTER ROUTE");
   Product.findAll({
-    where:request.query
+    where:filterInfo
   })
   .then(products =>{
     response.json(products)
   })
   .catch(next);
 })
+
+function createTheWhereObject(query){
+  var whereObject = {};
+  if (query.artistName){
+    whereObject.artistName = {
+      $like: `%${query.artistName}%`
+    }
+  }
+  if (query.location){
+    whereObject.location = query.location
+  }
+  if (query.rating){
+    whereObject.rating = query.rating
+  }
+  if (query.max){
+    whereObject.price = {
+      $lte: query.max
+    }
+  }
+  if (query.min){
+    if(whereObject.price){
+      whereObject.price.$gte = query.min
+    }
+    else {
+      whereObject.price = {
+        $gte: query.min
+      }
+    }
+  }
+
+
+
+  return whereObject
+}
 
 module.exports = customProductsRoutes
 

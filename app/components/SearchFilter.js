@@ -10,7 +10,7 @@ class SearchFilter extends Component {
 	constructor(){
 		super();
 		this.state = {
-      name: -1,
+      artistName: -1,
       options: [],
       min: -1,
       max: -1,
@@ -44,7 +44,7 @@ class SearchFilter extends Component {
     if (genres && genres.length ===0) genres=-1;
 
 		var searchfilterinfo = {
-			name: this.state.name,
+			artistName: this.state.artistName,
 			min: this.state.min,
 			max: this.state.max,
 			location: this.state.location,
@@ -77,7 +77,7 @@ class SearchFilter extends Component {
     <div className="container">
 			<div className="col-md-3">
 				<label>DJ Name</label>
-				<input onChange={(event) => this.setState({name: event.target.value})} placeholder="Enter DJ Name" type="text" />
+				<input onChange={(event) => this.setState({artistName: event.target.value})} placeholder="Enter DJ Name" type="text" />
 			</div>
 
 			<div className="col-md-3">
